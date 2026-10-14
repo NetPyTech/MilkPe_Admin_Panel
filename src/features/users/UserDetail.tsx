@@ -64,13 +64,13 @@ export function UserDetailView({ data }: { data: UserDetail }) {
               ['Payment cycle', buyer.payment_cycle], ['Created', formatDateTime(buyer.created_at)], ['Suppliers', buyer.supplier_count],
               ['Collections recorded', buyer.collections_count], ['Last collection', formatDate(buyer.last_collection_date)],
               ['Free trial ends', buyer.trial_ends_at ? `${formatDate(buyer.trial_ends_at)} (${buyer.trial_days_remaining ?? 0} days left)` : null],
-              ['Trial extended by', `${buyer.trial_extra_days} days`]]} />
+              ['Trial extended by', `${buyer.trial_granted_days} days`]]} />
           ) : null}
           {buyer ? (
             <>
               <Button variant="outline" onClick={() => setExtending(true)}>Extend trial</Button>
               {extending ? (
-                <ExtendTrialDialog open userId={user.id} who={user.name || user.phone_number} extraDays={buyer.trial_extra_days}
+                <ExtendTrialDialog open userId={user.id} who={user.name || user.phone_number} extraDays={buyer.trial_granted_days}
                   endsAt={buyer.trial_ends_at} remaining={buyer.trial_days_remaining} onClose={() => setExtending(false)} />
               ) : null}
             </>

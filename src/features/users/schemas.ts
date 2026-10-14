@@ -15,7 +15,7 @@ export const userDetailSchema = z.object({
     tehsil: nullableText, village: nullableText, pincode: nullableText }).nullable(),
   buyer: z.object({ dairy_name: z.string(), state: nullableText, district: nullableText, rate_type: nullableText, payment_cycle: nullableText,
     created_at: z.string(), supplier_count: z.number(), collections_count: z.number(), last_collection_date: nullableText,
-    trial_extra_days: z.number(), trial_ends_at: nullableText, trial_days_remaining: z.number().nullable() }).nullable(),
+    trial_extra_days: z.number(), trial_granted_days: z.number(), trial_ends_at: nullableText, trial_days_remaining: z.number().nullable() }).nullable(),
   seller: z.object({ business_name: z.string(), state: nullableText, is_verified: z.boolean(), created_at: z.string(), collections_count: z.number() }).nullable(),
   wallet: z.object({ balance: nullableText, transactions: z.array(z.object({ id: z.string(), transaction_type: z.string(), status: z.string(),
     category: z.string(), amount: z.string(), description: z.string(), created_at: z.string() })) }),

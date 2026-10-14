@@ -11,7 +11,7 @@ const detail: UserDetail = {
   profile: { name: 'Ramesh', email: 'r@example.com', address: null, state: 'Punjab', district: 'Ludhiana', tehsil: null, village: null, pincode: null },
   buyer: { dairy_name: 'Sunrise Dairy', state: 'Punjab', district: 'Ludhiana', rate_type: 'fat_snf', payment_cycle: 'ten_days',
     created_at: '2026-10-01T05:00:00Z', supplier_count: 4, collections_count: 20, last_collection_date: '2026-10-13',
-    trial_extra_days: 0, trial_ends_at: '2026-10-31T05:00:00Z', trial_days_remaining: 17 },
+    trial_extra_days: 0, trial_granted_days: 0, trial_ends_at: '2026-10-31T05:00:00Z', trial_days_remaining: 17 },
   seller: null,
   wallet: { balance: '125.50', transactions: [{ id: 't1', transaction_type: 'CREDIT', status: 'SUCCESS', category: 'RECHARGE', amount: '500.00', description: 'Recharge', created_at: '2026-10-10T05:00:00Z' }] },
   referral: { code: 'ABC12', referred_by: { id: 'r1', phone_number: '+919893100071' }, referred_count: 2 },

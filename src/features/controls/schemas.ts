@@ -40,5 +40,5 @@ export const deletionPageSchema = z.object({
   count: z.number(), next: nullableText, previous: nullableText, results: z.array(deletionRequestSchema),
 });
 
-export const trialExtensionSchema = z.object({ trial_extra_days: z.number(), trial_ends_at: z.string(), trial_days_remaining: z.number() });
+export const trialExtensionSchema = z.object({ trial_extra_days: z.number(), trial_granted_days: z.number(), trial_ends_at: z.string(), trial_days_remaining: z.number() });
 export type TrialExtension = z.infer<typeof trialExtensionSchema>;

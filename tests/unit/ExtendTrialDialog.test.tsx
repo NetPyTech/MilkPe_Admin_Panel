@@ -43,7 +43,7 @@ describe('ExtendTrialDialog', () => {
   });
 
   it('sends the days as a number with the reason and closes', async () => {
-    const fetchMock = vi.fn().mockResolvedValue(reply(200, { trial_extra_days: 25, trial_ends_at: '2026-12-13T17:39:29Z', trial_days_remaining: 60 }));
+    const fetchMock = vi.fn().mockResolvedValue(reply(200, { trial_extra_days: 25, trial_granted_days: 25, trial_ends_at: '2026-12-13T17:39:29Z', trial_days_remaining: 60 }));
     vi.stubGlobal('fetch', fetchMock);
     const onClose = open();
     await userEvent.type(screen.getByLabelText('Days to add'), '15');
