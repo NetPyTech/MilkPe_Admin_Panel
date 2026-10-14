@@ -1,0 +1,51 @@
+{
+  "states": [
+    {
+      "state": "Unknown",
+      "users": 11628,
+      "dairies": 4377
+    },
+    {
+      "state": "Punjab",
+      "users": 100,
+      "dairies": 16
+    },
+    {
+      "state": "Haryana",
+      "users": 36,
+      "dairies": 0
+    },
+    {
+      "state": "X",
+      "users": 32,
+      "dairies": 0
+    },
+    {
+      "state": "Maharashtra",
+      "users": 7,
+      "dairies": 7
+    },
+    {
+      "state": "Karnataka",
+      "users": 0,
+      "dairies": 34
+    },
+    {
+      "state": "Rajasthan",
+      "users": 0,
+      "dairies": 17
+    }
+  ],
+  "districts": [
+    {
+      "district": "Patiala",
+      "state": "Punjab",
+      "dairies": 16
+    },
+    {
+      "district": "Mumbai",
+      "state": "Maharashtra",
+      "dairies": 7
+    }
+  ]
+}

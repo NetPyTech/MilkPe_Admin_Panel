@@ -1,0 +1,77 @@
+{
+  "as_of": "2026-10-14",
+  "rollups_built_through": "2026-10-14",
+  "cards": [
+    {
+      "key": "signups_total",
+      "label": "New users",
+      "unit": "count",
+      "today": "1425",
+      "yesterday": "0",
+      "avg_7d": "0.0",
+      "yesterday_vs_avg": null
+    },
+    {
+      "key": "active_dairies",
+      "label": "Active dairies",
+      "unit": "count",
+      "today": "0",
+      "yesterday": "0",
+      "avg_7d": "0.0",
+      "yesterday_vs_avg": null
+    },
+    {
+      "key": "collections_count",
+      "label": "Collections",
+      "unit": "count",
+      "today": "0",
+      "yesterday": "0",
+      "avg_7d": "0.0",
+      "yesterday_vs_avg": null
+    },
+    {
+      "key": "collections_kg",
+      "label": "Milk collected",
+      "unit": "kg",
+      "today": "0.00",
+      "yesterday": "0.00",
+      "avg_7d": "0.00",
+      "yesterday_vs_avg": null
+    },
+    {
+      "key": "dau",
+      "label": "Daily active users",
+      "unit": "count",
+      "today": "348",
+      "yesterday": "0",
+      "avg_7d": "0.0",
+      "yesterday_vs_avg": null
+    },
+    {
+      "key": "recharge_amount",
+      "label": "Recharged",
+      "unit": "rupees",
+      "today": "0.00",
+      "yesterday": "0.00",
+      "avg_7d": "0.00",
+      "yesterday_vs_avg": null
+    },
+    {
+      "key": "fee_amount",
+      "label": "Collection fees",
+      "unit": "rupees",
+      "today": "0.00",
+      "yesterday": "0.00",
+      "avg_7d": "0.00",
+      "yesterday_vs_avg": null
+    }
+  ],
+  "alerts": [
+    {
+      "key": "stuck_payments",
+      "severity": "warn",
+      "link": "/money?tab=payments&stuck=true",
+      "message": "22 recharges pending for over 30 minutes"
+    }
+  ]
+}

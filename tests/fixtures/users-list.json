@@ -1,0 +1,60 @@
+{
+  "next": "http://localhost:8000/api/superadmin/users/?cursor=cD0yMDI2LTEwLTE0KzA1JTNBMDglM0EwMS4xOTcwODclMkIwMCUzQTAw&page_size=3&role=buyer",
+  "previous": null,
+  "results": [
+    {
+      "id": "6075150e-9d73-48b6-95a5-20017316dfc2",
+      "phone_number": "+919455212829",
+      "universal_id": "306511",
+      "name": null,
+      "email": null,
+      "language": "en",
+      "roles": [
+        "buyer"
+      ],
+      "state": null,
+      "district": null,
+      "is_active": true,
+      "has_logged_in": true,
+      "date_joined": "2026-10-14T05:08:01.942208Z",
+      "wallet_balance": "0.00",
+      "last_active": null
+    },
+    {
+      "id": "cd74c3be-d654-427e-b02f-3a81e9cfe484",
+      "phone_number": "+919644365418",
+      "universal_id": "648673",
+      "name": null,
+      "email": null,
+      "language": "en",
+      "roles": [
+        "buyer"
+      ],
+      "state": null,
+      "district": null,
+      "is_active": true,
+      "has_logged_in": true,
+      "date_joined": "2026-10-14T05:08:01.664121Z",
+      "wallet_balance": "0.00",
+      "last_active": null
+    },
+    {
+      "id": "b66143cb-d7fa-4e39-ae30-a6adc7b2cdd8",
+      "phone_number": "+919355898355",
+      "universal_id": "146690",
+      "name": null,
+      "email": null,
+      "language": "en",
+      "roles": [
+        "buyer"
+      ],
+      "state": null,
+      "district": null,
+      "is_active": true,
+      "has_logged_in": true,
+      "date_joined": "2026-10-14T05:08:01.197087Z",
+      "wallet_balance": "0.00",
+      "last_active": null
+    }
+  ]
+}

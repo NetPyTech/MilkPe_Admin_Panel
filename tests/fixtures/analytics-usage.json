@@ -1,0 +1,41 @@
+{
+  "days": 30,
+  "workspaces": [
+    {
+      "workspace": "seller",
+      "taps": 6,
+      "users": 4
+    },
+    {
+      "workspace": "buyer",
+      "taps": 4,
+      "users": 4
+    }
+  ],
+  "notifications": [
+    {
+      "category": "connection",
+      "sent": 5651,
+      "read": 0,
+      "read_rate": "0.0"
+    },
+    {
+      "category": "wallet",
+      "sent": 903,
+      "read": 69,
+      "read_rate": "7.6"
+    },
+    {
+      "category": "proposal",
+      "sent": 821,
+      "read": 0,
+      "read_rate": "0.0"
+    },
+    {
+      "category": "system",
+      "sent": 52,
+      "read": 0,
+      "read_rate": "0.0"
+    }
+  ]
+}

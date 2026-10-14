@@ -1,0 +1,42 @@
+{
+  "next": "http://localhost:8000/api/superadmin/payments/?category=ADJUSTMENT&cursor=cD0yMDI2LTEwLTE0KzE1JTNBMzglM0E1Ni4yOTcxODAlMkIwMCUzQTAw&page_size=2",
+  "previous": null,
+  "results": [
+    {
+      "id": "0edbd4a8-ae07-42b5-9dc9-0721faa7cb15",
+      "created_at": "2026-10-14T15:38:56.451646Z",
+      "user": {
+        "id": "74396a59-47e2-4623-aba4-03e795f9b508",
+        "phone_number": "+919300083594",
+        "name": null
+      },
+      "type": "CREDIT",
+      "status": "SUCCESS",
+      "category": "ADJUSTMENT",
+      "amount": "75.50",
+      "description": "Adjustment by MilkPe",
+      "razorpay_order_id": null,
+      "razorpay_payment_id": null,
+      "reason": "api test",
+      "created_by": "+919999900001"
+    },
+    {
+      "id": "dd29a7bf-64e9-44f2-ab82-0d3028dbab5b",
+      "created_at": "2026-10-14T15:38:56.297180Z",
+      "user": {
+        "id": "99425e51-6942-40b8-9bdc-6b837062bd39",
+        "phone_number": "+919356589688",
+        "name": null
+      },
+      "type": "CREDIT",
+      "status": "SUCCESS",
+      "category": "ADJUSTMENT",
+      "amount": "75.50",
+      "description": "Adjustment by MilkPe",
+      "razorpay_order_id": null,
+      "razorpay_payment_id": null,
+      "reason": "api test",
+      "created_by": "+919999900001"
+    }
+  ]
+}

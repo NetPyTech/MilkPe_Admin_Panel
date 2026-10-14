@@ -1,0 +1,70 @@
+{
+  "group": "day",
+  "from": "2026-10-10",
+  "to": "2026-10-14",
+  "metrics": [
+    {
+      "slug": "collections_count",
+      "label": "Collections",
+      "unit": "count"
+    },
+    {
+      "slug": "collections_kg",
+      "label": "Milk collected",
+      "unit": "kg"
+    },
+    {
+      "slug": "collections_amount",
+      "label": "Collection value",
+      "unit": "rupees"
+    },
+    {
+      "slug": "active_dairies",
+      "label": "Active dairies",
+      "unit": "count"
+    }
+  ],
+  "series": [
+    {
+      "day": "2026-10-10",
+      "collections_count": "0",
+      "collections_kg": "0.00",
+      "collections_amount": "0.00",
+      "active_dairies": "0"
+    },
+    {
+      "day": "2026-10-11",
+      "collections_count": "0",
+      "collections_kg": "0.00",
+      "collections_amount": "0.00",
+      "active_dairies": "0"
+    },
+    {
+      "day": "2026-10-12",
+      "collections_count": "0",
+      "collections_kg": "0.00",
+      "collections_amount": "0.00",
+      "active_dairies": "0"
+    },
+    {
+      "day": "2026-10-13",
+      "collections_count": "0",
+      "collections_kg": "0.00",
+      "collections_amount": "0.00",
+      "active_dairies": "0"
+    },
+    {
+      "day": "2026-10-14",
+      "collections_count": "0",
+      "collections_kg": "0.00",
+      "collections_amount": "0.00",
+      "active_dairies": "0"
+    }
+  ],
+  "totals": {
+    "collections_count": "0",
+    "collections_kg": "0.00",
+    "collections_amount": "0.00",
+    "active_dairies": null
+  }
+}

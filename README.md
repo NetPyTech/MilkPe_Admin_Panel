@@ -36,6 +36,15 @@ and every `THROTTLE_RATE_*` raised (see the backend's `CLAUDE.md`, including `TH
 `e2e/global-setup.ts` seeds an administrator and a dairy owner through the backend's `manage.py shell`. Playwright's Chromium needs the usual
 system libraries (`npx playwright install-deps chromium`) and fonts.
 
+## Visitor address and sign-in limits
+
+The backend's audit log and its per-address limits need the visitor's address, not this server's. Behind one reverse proxy (nginx, a load balancer) the
+proxy appends the address it saw to `X-Forwarded-For`; `TRUSTED_PROXY_HOPS` says how many such proxies there are (default 0: the header is not believed, because a visitor can send their own; set 1 behind a single proxy), and this app believes only the
+entry that many places from the right (a visitor can send their own header). It passes that address to the backend as the only `X-Forwarded-For` entry, so
+the backend's `THROTTLE_NUM_PROXIES` must be `1` and this app must reach the backend directly (a private address). With `0`, or no header (local
+development), no address is passed. The sign-in route also stops a visitor after 10 tries a minute (`429` with `Retry-After`); the backend's own limits
+remain the real ones.
+
 ## Controls
 
 `/controls` edits the nine business settings the backend lists at `GET /superadmin/config/` (trial length, collection fee, recharge bonus tiers,

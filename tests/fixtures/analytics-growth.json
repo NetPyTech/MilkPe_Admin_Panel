@@ -1,0 +1,92 @@
+{
+  "from": "2026-10-10",
+  "to": "2026-10-14",
+  "built_through": "2026-10-14",
+  "metrics": [
+    {
+      "slug": "signups_total",
+      "label": "New users",
+      "unit": "count"
+    },
+    {
+      "slug": "signups_buyer",
+      "label": "New dairy owners",
+      "unit": "count"
+    },
+    {
+      "slug": "signups_seller",
+      "label": "New suppliers",
+      "unit": "count"
+    },
+    {
+      "slug": "onboarded_buyer",
+      "label": "Dairies set up",
+      "unit": "count"
+    },
+    {
+      "slug": "first_customer_added",
+      "label": "Dairies adding their first supplier",
+      "unit": "count"
+    },
+    {
+      "slug": "first_collection_recorded",
+      "label": "Dairies recording their first collection",
+      "unit": "count"
+    }
+  ],
+  "series": [
+    {
+      "day": "2026-10-10",
+      "signups_total": "0",
+      "signups_buyer": "0",
+      "signups_seller": "0",
+      "onboarded_buyer": "0",
+      "first_customer_added": "0",
+      "first_collection_recorded": "0"
+    },
+    {
+      "day": "2026-10-11",
+      "signups_total": "0",
+      "signups_buyer": "0",
+      "signups_seller": "0",
+      "onboarded_buyer": "0",
+      "first_customer_added": "0",
+      "first_collection_recorded": "0"
+    },
+    {
+      "day": "2026-10-12",
+      "signups_total": "0",
+      "signups_buyer": "0",
+      "signups_seller": "0",
+      "onboarded_buyer": "0",
+      "first_customer_added": "0",
+      "first_collection_recorded": "0"
+    },
+    {
+      "day": "2026-10-13",
+      "signups_total": "0",
+      "signups_buyer": "0",
+      "signups_seller": "0",
+      "onboarded_buyer": "0",
+      "first_customer_added": "0",
+      "first_collection_recorded": "0"
+    },
+    {
+      "day": "2026-10-14",
+      "signups_total": "1425",
+      "signups_buyer": "229",
+      "signups_seller": "230",
+      "onboarded_buyer": "229",
+      "first_customer_added": "232",
+      "first_collection_recorded": "1"
+    }
+  ],
+  "totals": {
+    "signups_total": "1425",
+    "signups_buyer": "229",
+    "signups_seller": "230",
+    "onboarded_buyer": "229",
+    "first_customer_added": "232",
+    "first_collection_recorded": "1"
+  }
+}

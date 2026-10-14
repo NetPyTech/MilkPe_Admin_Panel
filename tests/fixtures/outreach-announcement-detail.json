@@ -1,0 +1,53 @@
+{
+  "id": "ea368cce-c6c3-4824-9981-a5498ec4bded",
+  "kind": "offer",
+  "priority": "normal",
+  "audience": {
+    "type": "segment",
+    "phones": [],
+    "rules": {
+      "role": "buyer",
+      "joined_from": "2026-09-01",
+      "never_added_supplier": true
+    }
+  },
+  "send_push": true,
+  "show_on_home": true,
+  "screen": "Wallet",
+  "url": "",
+  "send_at": null,
+  "expires_at": null,
+  "status": "draft",
+  "overdue": false,
+  "translations": {
+    "en": {
+      "title": "Get 10% extra",
+      "message": "Recharge this week and get a bonus.",
+      "cta_label": "Open wallet"
+    },
+    "hi": {
+      "title": "10% अतिरिक्त",
+      "message": "इस हफ़्ते रिचार्ज करें।",
+      "cta_label": "वॉलेट खोलें"
+    }
+  },
+  "missing_languages": [
+    "kn",
+    "pa",
+    "mr",
+    "gu"
+  ],
+  "recipient_count": 0,
+  "created_by": "5d28f831-2c13-41f8-a456-79927e3ebccb",
+  "published_by": null,
+  "created_at": "2026-10-14T16:38:08.365871Z",
+  "published_at": null,
+  "sent_at": null,
+  "retracted_at": null,
+  "stats": {
+    "recipients": 0,
+    "read": 0,
+    "dismissed": 0,
+    "hidden_by_mute": 0
+  }
+}

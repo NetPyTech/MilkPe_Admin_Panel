@@ -1,0 +1,296 @@
+{
+  "kinds": [
+    {
+      "key": "info",
+      "label": "Information"
+    },
+    {
+      "key": "update",
+      "label": "Change or update"
+    },
+    {
+      "key": "offer",
+      "label": "Offer"
+    },
+    {
+      "key": "maintenance",
+      "label": "Maintenance"
+    }
+  ],
+  "priorities": [
+    {
+      "key": "normal",
+      "label": "Normal"
+    },
+    {
+      "key": "high",
+      "label": "High"
+    }
+  ],
+  "audiences": [
+    {
+      "type": "all",
+      "label": "Everyone",
+      "needs_phones": false
+    },
+    {
+      "type": "buyers",
+      "label": "Dairy owners (buyers)",
+      "needs_phones": false
+    },
+    {
+      "type": "sellers",
+      "label": "Suppliers (sellers)",
+      "needs_phones": false
+    },
+    {
+      "type": "users",
+      "label": "Listed phone numbers",
+      "needs_phones": true
+    },
+    {
+      "type": "segment",
+      "label": "People matching a filter",
+      "needs_phones": false
+    }
+  ],
+  "screens": [
+    {
+      "key": "Wallet",
+      "label": "Wallet"
+    },
+    {
+      "key": "Referral",
+      "label": "Refer & earn"
+    },
+    {
+      "key": "Profile",
+      "label": "Profile"
+    },
+    {
+      "key": "Notifications",
+      "label": "Notifications"
+    },
+    {
+      "key": "MilkCalculator",
+      "label": "Milk calculator"
+    },
+    {
+      "key": "Report",
+      "label": "Reports"
+    },
+    {
+      "key": "Customer",
+      "label": "Suppliers"
+    },
+    {
+      "key": "Routes",
+      "label": "Routes"
+    },
+    {
+      "key": "AllCollections",
+      "label": "All collections"
+    },
+    {
+      "key": "MoreOptions",
+      "label": "More"
+    }
+  ],
+  "statuses": [
+    {
+      "key": "draft",
+      "label": "Draft"
+    },
+    {
+      "key": "scheduled",
+      "label": "Scheduled"
+    },
+    {
+      "key": "sending",
+      "label": "Sending"
+    },
+    {
+      "key": "sent",
+      "label": "Sent"
+    },
+    {
+      "key": "retracted",
+      "label": "Retracted"
+    }
+  ],
+  "languages": [
+    {
+      "code": "en",
+      "name": "English"
+    },
+    {
+      "code": "hi",
+      "name": "हिन्दी"
+    },
+    {
+      "code": "kn",
+      "name": "ಕನ್ನಡ"
+    },
+    {
+      "code": "pa",
+      "name": "ਪੰਜਾਬੀ"
+    },
+    {
+      "code": "mr",
+      "name": "मराठी"
+    },
+    {
+      "code": "gu",
+      "name": "ગુજરાતી"
+    }
+  ],
+  "limits": {
+    "title": 80,
+    "message": 500,
+    "cta_label": 30,
+    "url": 500,
+    "phones": 500,
+    "home_cards": 5
+  },
+  "segment_rules": [
+    {
+      "key": "role",
+      "label": "Role",
+      "type": "choice",
+      "choices": [
+        {
+          "value": "buyer",
+          "label": "Dairy owner"
+        },
+        {
+          "value": "seller",
+          "label": "Supplier"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        },
+        {
+          "value": "none",
+          "label": "No role chosen yet"
+        }
+      ],
+      "help": ""
+    },
+    {
+      "key": "language",
+      "label": "App language",
+      "type": "choice",
+      "choices": [
+        {
+          "value": "en",
+          "label": "English"
+        },
+        {
+          "value": "hi",
+          "label": "हिन्दी"
+        },
+        {
+          "value": "kn",
+          "label": "ಕನ್ನಡ"
+        },
+        {
+          "value": "pa",
+          "label": "ਪੰਜਾਬੀ"
+        },
+        {
+          "value": "mr",
+          "label": "मराठी"
+        },
+        {
+          "value": "gu",
+          "label": "ગુજરાતી"
+        }
+      ],
+      "help": ""
+    },
+    {
+      "key": "state",
+      "label": "State",
+      "type": "text",
+      "choices": [],
+      "help": ""
+    },
+    {
+      "key": "district",
+      "label": "District",
+      "type": "text",
+      "choices": [],
+      "help": ""
+    },
+    {
+      "key": "joined_from",
+      "label": "Joined on or after",
+      "type": "date",
+      "choices": [],
+      "help": ""
+    },
+    {
+      "key": "joined_to",
+      "label": "Joined on or before",
+      "type": "date",
+      "choices": [],
+      "help": ""
+    },
+    {
+      "key": "trial",
+      "label": "Free trial (dairies)",
+      "type": "choice",
+      "choices": [
+        {
+          "value": "active",
+          "label": "Running"
+        },
+        {
+          "value": "ending",
+          "label": "Ending within 7 days"
+        },
+        {
+          "value": "ended",
+          "label": "Ended"
+        }
+      ],
+      "help": "Counted from the day the dairy was set up."
+    },
+    {
+      "key": "balance_below",
+      "label": "Wallet balance below (₹)",
+      "type": "number",
+      "choices": [],
+      "help": ""
+    },
+    {
+      "key": "inactive_days",
+      "label": "Not opened the app for (days)",
+      "type": "number",
+      "choices": [],
+      "help": "Counts a person with no recorded activity as inactive; activity is recorded only since the app began reporting it."
+    },
+    {
+      "key": "no_collection_days",
+      "label": "No collection recorded for (days)",
+      "type": "number",
+      "choices": [],
+      "help": "Dairies only."
+    },
+    {
+      "key": "never_added_supplier",
+      "label": "Has never added a supplier",
+      "type": "flag",
+      "choices": [],
+      "help": "Dairies only."
+    },
+    {
+      "key": "app_version_below",
+      "label": "App version older than",
+      "type": "version",
+      "choices": [],
+      "help": "People whose newest reported version is older; people who never reported one are left out."
+    }
+  ]
+}
