@@ -1,0 +1,15 @@
+{
+  "group": "state",
+  "from": "2026-09-15",
+  "to": "2026-10-14",
+  "rows": [
+    {
+      "key": "Unknown",
+      "label": "Unknown",
+      "collections": 2276,
+      "kg": "135007.92",
+      "amount": "7282673.19",
+      "dairies": 4
+    }
+  ]
+}

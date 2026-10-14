@@ -1,0 +1,47 @@
+{
+  "id": "88462130-dd49-4897-817f-34588026b78d",
+  "kind": "info",
+  "priority": "normal",
+  "audience": {
+    "type": "users",
+    "phones": [
+      "9043771118"
+    ],
+    "rules": {}
+  },
+  "send_push": true,
+  "show_on_home": false,
+  "screen": "",
+  "url": "",
+  "send_at": "2026-10-14T05:07:57.852741Z",
+  "expires_at": null,
+  "status": "sent",
+  "overdue": false,
+  "translations": {
+    "en": {
+      "title": "Bulk edit is here",
+      "message": "Edit many collections at once.",
+      "cta_label": ""
+    }
+  },
+  "missing_languages": [
+    "hi",
+    "kn",
+    "pa",
+    "mr",
+    "gu"
+  ],
+  "recipient_count": 1,
+  "created_by": null,
+  "published_by": null,
+  "created_at": "2026-10-14T05:07:57.839129Z",
+  "published_at": "2026-10-14T05:07:57.852741Z",
+  "sent_at": "2026-10-14T05:07:57.926985Z",
+  "retracted_at": null,
+  "stats": {
+    "recipients": 1,
+    "read": 0,
+    "dismissed": 0,
+    "hidden_by_mute": 0
+  }
+}

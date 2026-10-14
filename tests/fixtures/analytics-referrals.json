@@ -1,0 +1,68 @@
+{
+  "redeemed": 341,
+  "rewards_paid": "51150.00",
+  "referred_with_collection": 0,
+  "conversion": "0.0",
+  "top_referrers": [
+    {
+      "user_id": "1b33c352-fcd7-412f-bb89-8b9c07ce8a5c",
+      "phone_number": "+919005861398",
+      "name": null,
+      "referred": 1
+    },
+    {
+      "user_id": "39f88328-12f1-4d6c-b83a-d417ecd321df",
+      "phone_number": "+919016688602",
+      "name": null,
+      "referred": 1
+    },
+    {
+      "user_id": "07c61230-ace3-4b4e-8251-9c1b4b13994f",
+      "phone_number": "+919018737647",
+      "name": null,
+      "referred": 1
+    },
+    {
+      "user_id": "067eb001-df04-49eb-8828-a9a96d38bb7a",
+      "phone_number": "+919019286846",
+      "name": null,
+      "referred": 1
+    },
+    {
+      "user_id": "85b7f144-3639-4ded-ad3e-ebc0c1b98188",
+      "phone_number": "+919027364637",
+      "name": null,
+      "referred": 1
+    },
+    {
+      "user_id": "6c4ff780-fdc1-44e0-95af-7652ca87f239",
+      "phone_number": "+919029657795",
+      "name": null,
+      "referred": 1
+    },
+    {
+      "user_id": "d582c3e8-8461-4cfa-982b-264effb67121",
+      "phone_number": "+919033151446",
+      "name": null,
+      "referred": 1
+    },
+    {
+      "user_id": "a143c5a5-fbdd-48a3-9035-18f016ee24b2",
+      "phone_number": "+919036406815",
+      "name": null,
+      "referred": 1
+    },
+    {
+      "user_id": "2ce7ad6b-8bf5-4085-91c1-587e74e192e4",
+      "phone_number": "+919037324899",
+      "name": null,
+      "referred": 1
+    },
+    {
+      "user_id": "85f19e29-3b54-44d6-88ce-8964fa590334",
+      "phone_number": "+919040685494",
+      "name": null,
+      "referred": 1
+    }
+  ]
+}

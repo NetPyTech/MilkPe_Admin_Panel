@@ -1,0 +1,63 @@
+{
+  "next": "http://localhost:8000/api/superadmin/audit/?cursor=cD0yMDI2LTEwLTE0KzE0JTNBMzIlM0EyMy4wNzk3MTglMkIwMCUzQTAw&page_size=3",
+  "previous": null,
+  "results": [
+    {
+      "id": "617dccbc-01df-4576-9072-643af4411112",
+      "actor": {
+        "id": "5d28f831-2c13-41f8-a456-79927e3ebccb",
+        "phone_number": "+919999900001"
+      },
+      "action": "user.reactivate",
+      "target_type": "user",
+      "target_id": "6075150e-9d73-48b6-95a5-20017316dfc2",
+      "reason": "docs example restore",
+      "before": {
+        "is_active": false
+      },
+      "after": {
+        "is_active": true
+      },
+      "ip": "127.0.0.1",
+      "created_at": "2026-10-14T14:32:32.215645Z"
+    },
+    {
+      "id": "cd6115c0-8387-4353-bec0-f114e20066c3",
+      "actor": {
+        "id": "5d28f831-2c13-41f8-a456-79927e3ebccb",
+        "phone_number": "+919999900001"
+      },
+      "action": "user.deactivate",
+      "target_type": "user",
+      "target_id": "6075150e-9d73-48b6-95a5-20017316dfc2",
+      "reason": "docs example",
+      "before": {
+        "is_active": true
+      },
+      "after": {
+        "is_active": false
+      },
+      "ip": "127.0.0.1",
+      "created_at": "2026-10-14T14:32:32.166829Z"
+    },
+    {
+      "id": "9644354d-b844-487c-964e-907348db0681",
+      "actor": {
+        "id": "5d28f831-2c13-41f8-a456-79927e3ebccb",
+        "phone_number": "+919999900001"
+      },
+      "action": "user.reactivate",
+      "target_type": "user",
+      "target_id": "ac235477-83c1-4c95-a5e5-3bf6feba4a83",
+      "reason": "api test",
+      "before": {
+        "is_active": false
+      },
+      "after": {
+        "is_active": true
+      },
+      "ip": "127.0.0.1",
+      "created_at": "2026-10-14T14:32:23.079718Z"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "total_outstanding": "53189.37",
+  "wallets": 11799,
+  "below_low_balance": 11799,
+  "zero_balance": 10843,
+  "low_balance_threshold": "200.00"
+}

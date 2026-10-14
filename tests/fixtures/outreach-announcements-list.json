@@ -1,0 +1,581 @@
+{
+  "count": 14,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "88462130-dd49-4897-817f-34588026b78d",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9043771118"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T05:07:57.852741Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T05:07:57.839129Z",
+      "published_at": "2026-10-14T05:07:57.852741Z",
+      "sent_at": "2026-10-14T05:07:57.926985Z",
+      "retracted_at": null
+    },
+    {
+      "id": "4938c2d9-47a0-45b2-ae7c-e23698f103d8",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9260177760"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T05:07:55.902622Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T05:07:55.887791Z",
+      "published_at": "2026-10-14T05:07:55.902622Z",
+      "sent_at": "2026-10-14T05:07:55.967481Z",
+      "retracted_at": null
+    },
+    {
+      "id": "30c9241f-d44b-4c73-9a33-29cca766eac8",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9280626883"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T04:52:45.916367Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T04:52:45.895127Z",
+      "published_at": "2026-10-14T04:52:45.916367Z",
+      "sent_at": "2026-10-14T04:52:46.002926Z",
+      "retracted_at": null
+    },
+    {
+      "id": "46e5ae38-c536-475c-9289-93d9cf658f6e",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9868134586"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T04:52:43.584839Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T04:52:43.570517Z",
+      "published_at": "2026-10-14T04:52:43.584839Z",
+      "sent_at": "2026-10-14T04:52:43.647629Z",
+      "retracted_at": null
+    },
+    {
+      "id": "ca4529e7-afdf-4aa5-bda1-2143e9285e21",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9034117512"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T04:36:04.125271Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T04:36:04.113516Z",
+      "published_at": "2026-10-14T04:36:04.125271Z",
+      "sent_at": "2026-10-14T04:36:04.180302Z",
+      "retracted_at": null
+    },
+    {
+      "id": "6903ee9b-c50d-4bd0-8ece-9930cab20820",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9775349097"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T04:36:02.203635Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T04:36:02.192319Z",
+      "published_at": "2026-10-14T04:36:02.203635Z",
+      "sent_at": "2026-10-14T04:36:02.257837Z",
+      "retracted_at": null
+    },
+    {
+      "id": "16d4b698-2dac-46de-aad4-bb0c63c4ef5d",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9155369530"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T04:22:26.070899Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T04:22:26.051362Z",
+      "published_at": "2026-10-14T04:22:26.070899Z",
+      "sent_at": "2026-10-14T04:22:26.141510Z",
+      "retracted_at": null
+    },
+    {
+      "id": "a4d34f4c-e79a-4d8c-8130-ae3c505a2650",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9496401961"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T04:22:24.556226Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T04:22:24.538828Z",
+      "published_at": "2026-10-14T04:22:24.556226Z",
+      "sent_at": "2026-10-14T04:22:24.617579Z",
+      "retracted_at": null
+    },
+    {
+      "id": "7c554daa-9d5c-467e-b652-43e3c36a2bd9",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9421980007"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T04:10:02.716508Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T04:10:02.699435Z",
+      "published_at": "2026-10-14T04:10:02.716508Z",
+      "sent_at": "2026-10-14T04:10:02.787592Z",
+      "retracted_at": null
+    },
+    {
+      "id": "117e790a-fa2c-4e8e-a843-ca2efb4d95d9",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9677467159"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T04:10:00.485358Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T04:10:00.468347Z",
+      "published_at": "2026-10-14T04:10:00.485358Z",
+      "sent_at": "2026-10-14T04:10:00.543622Z",
+      "retracted_at": null
+    },
+    {
+      "id": "6f5324dd-02aa-48e8-92de-d1a8bbba7d32",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9724988725"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T03:51:23.943361Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T03:51:23.926717Z",
+      "published_at": "2026-10-14T03:51:23.943361Z",
+      "sent_at": "2026-10-14T03:51:23.999709Z",
+      "retracted_at": null
+    },
+    {
+      "id": "25b36b8b-c23b-44a2-84ce-d93cbb2016d0",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9554261550"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T03:51:21.952623Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T03:51:21.936580Z",
+      "published_at": "2026-10-14T03:51:21.952623Z",
+      "sent_at": "2026-10-14T03:51:22.020631Z",
+      "retracted_at": null
+    },
+    {
+      "id": "f4ad414b-e60f-4282-b60a-c1d57162cca2",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9012798944"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T03:29:11.033535Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T03:29:11.015609Z",
+      "published_at": "2026-10-14T03:29:11.033535Z",
+      "sent_at": "2026-10-14T03:29:11.085481Z",
+      "retracted_at": null
+    },
+    {
+      "id": "a4897b59-bd33-45ec-9c99-f9fb5d90a2f1",
+      "kind": "info",
+      "priority": "normal",
+      "audience": {
+        "type": "users",
+        "phones": [
+          "9242200543"
+        ],
+        "rules": {}
+      },
+      "send_push": true,
+      "show_on_home": false,
+      "screen": "",
+      "url": "",
+      "send_at": "2026-10-14T03:29:09.258865Z",
+      "expires_at": null,
+      "status": "sent",
+      "overdue": false,
+      "translations": {
+        "en": {
+          "title": "Bulk edit is here",
+          "message": "Edit many collections at once.",
+          "cta_label": ""
+        }
+      },
+      "missing_languages": [
+        "hi",
+        "kn",
+        "pa",
+        "mr",
+        "gu"
+      ],
+      "recipient_count": 1,
+      "created_by": null,
+      "published_by": null,
+      "created_at": "2026-10-14T03:29:09.240274Z",
+      "published_at": "2026-10-14T03:29:09.258865Z",
+      "sent_at": "2026-10-14T03:29:09.309096Z",
+      "retracted_at": null
+    }
+  ]
+}

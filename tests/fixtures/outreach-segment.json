@@ -1,0 +1,13 @@
+{
+  "id": "e8de6d7c-08ea-4663-81d0-c64428207894",
+  "name": "Dairies without a supplier",
+  "rules": {
+    "role": "buyer",
+    "never_added_supplier": true,
+    "joined_from": "2026-09-01"
+  },
+  "count": 472,
+  "created_by": "+919999900001",
+  "created_at": "2026-10-14T16:38:08.046556Z",
+  "updated_at": "2026-10-14T16:38:08.046593Z"
+}
