@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { ConfirmReasonDialog } from '@/components/ConfirmReasonDialog';
 import { ErrorState } from '@/components/ErrorState';
+import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Skeleton } from '@/components/ui/skeleton';
 import { api, ApiError } from '@/lib/api';
@@ -23,9 +24,10 @@ const COPY: Record<Verb, { title: string; effect: (who: string) => string; confi
 export function DeletionTab() {
   const queryClient = useQueryClient();
   const [status, setStatus] = useState('requested');
+  const [page, setPage] = useState(1);
   const [action, setAction] = useState<{ row: DeletionRequest; verb: Verb } | null>(null);
   const [open, setOpen] = useState(false);
-  const requests = useDeletionRequests(status);
+  const requests = useDeletionRequests(status, page);
 
   async function decide(note: string) {
     if (!action) return;
@@ -41,7 +43,7 @@ export function DeletionTab() {
       <p className="text-sm text-muted-foreground">People ask for their account to be deleted from the app. Approve or reject, then close the account when you are ready. Wallet and collection records are always kept.</p>
       <div className="max-w-48 space-y-1.5">
         <Label htmlFor="deletion-status">Show</Label>
-        <select id="deletion-status" value={status} onChange={(e) => setStatus(e.target.value)}
+        <select id="deletion-status" value={status} onChange={(e) => { setStatus(e.target.value); setPage(1); }}
           className="h-8 w-full rounded-lg border border-input bg-transparent px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
           <option value="requested">Waiting for a decision</option><option value="approved">Approved, not closed</option>
           <option value="done">Closed</option><option value="rejected">Rejected</option><option value="">All</option>
@@ -49,7 +51,18 @@ export function DeletionTab() {
       </div>
       {requests.isPending ? <Skeleton className="h-24 w-full" /> : requests.isError
         ? <ErrorState message={requests.error.message} retryAfter={requests.error instanceof ApiError ? requests.error.retryAfter : null} onRetry={() => requests.refetch()} />
-        : <DeletionTable rows={requests.data.results} onAct={(row, verb) => { setAction({ row, verb }); setOpen(true); }} />}
+        : (
+          <>
+            <DeletionTable rows={requests.data.results} onAct={(row, verb) => { setAction({ row, verb }); setOpen(true); }} />
+            {requests.data.next || requests.data.previous ? (
+              <div className="flex items-center justify-between">
+                <Button variant="outline" size="sm" disabled={!requests.data.previous} onClick={() => setPage((current) => Math.max(1, current - 1))}>Previous</Button>
+                <span className="text-sm text-muted-foreground">Page {page} · {requests.data.count} in all</span>
+                <Button variant="outline" size="sm" disabled={!requests.data.next} onClick={() => setPage((current) => current + 1)}>Next</Button>
+              </div>
+            ) : null}
+          </>
+        )}
       {action && copy ? (
         <ConfirmReasonDialog open={open} title={`${copy.title}: ${who}`} effect={copy.effect(who)} confirmLabel={copy.confirm}
           destructive={copy.destructive} onConfirm={decide} onClose={() => setOpen(false)} />

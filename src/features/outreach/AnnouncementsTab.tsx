@@ -37,7 +37,7 @@ export function AnnouncementsTab() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="space-y-1.5">
           <Label htmlFor="ann-status">Status</Label>
-          <select id="ann-status" value={status} onChange={(e) => change({ status: e.target.value || undefined })}
+          <select id="ann-status" value={status} onChange={(e) => change({ status: e.target.value || undefined, page: undefined })}
             className="h-8 rounded-lg border border-input bg-transparent px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
             <option value="">All</option>
             {(meta.data?.statuses ?? []).map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}

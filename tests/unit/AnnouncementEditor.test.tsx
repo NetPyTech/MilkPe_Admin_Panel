@@ -103,6 +103,70 @@ describe('a new announcement', () => {
   });
 });
 
+describe('publishing a new announcement', () => {
+  const fill = async () => {
+    await userEvent.type(await screen.findByLabelText('Title (English)'), 'Get 10% extra');
+    await userEvent.type(screen.getByLabelText('Message (English)'), 'Recharge this week.');
+  };
+
+  it('keeps the confirmation open and publishes the draft it just saved, without a second copy and without leaving the page first', async () => {
+    const calls = stub((url, init) => {
+      if (url.endsWith('/announcements/') && init.method === 'POST') return json(201, draft);
+      if (url.endsWith(`/announcements/${draft.id}/`) && init.method === 'PATCH') return json(200, draft);
+      if (url.endsWith('/publish/')) return json(202, { status: 'sent' });
+      return undefined;
+    });
+    mount(null);
+    await fill();
+    await userEvent.click(screen.getByRole('button', { name: 'Publish…' }));
+    expect(await screen.findByText(/472 people/)).toBeInTheDocument();
+    expect(router.replace).not.toHaveBeenCalled();                      // the page the confirmation lives on has not been replaced
+    await userEvent.click(screen.getByRole('button', { name: 'Send now' }));
+    await waitFor(() => expect(calls.some((c) => c.url.endsWith(`/announcements/${draft.id}/publish/`))).toBe(true));
+    expect(calls.filter((c) => c.method === 'POST' && c.url.endsWith('/announcements/'))).toHaveLength(1);
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith(`/outreach/announcements/${draft.id}`));   // only after it went out
+  });
+
+  it('cannot be edited, or started twice, while the draft is being saved and counted', async () => {
+    let release: (value: Response) => void = () => undefined;
+    const calls = stub((url, init) => {
+      if (url.endsWith('/announcements/') && init.method === 'POST') return new Promise<Response>((resolve) => { release = resolve; }) as unknown as Response;
+      return undefined;
+    });
+    mount(null);
+    await fill();
+    const publish = screen.getByRole('button', { name: 'Publish…' });
+    await userEvent.click(publish);
+    await waitFor(() => expect(publish).toBeDisabled());
+    expect(screen.getByLabelText('Title (English)')).toBeDisabled();
+    expect(screen.getByLabelText('Message (English)')).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Save draft' })).toBeDisabled();
+    await userEvent.click(publish);                                     // a second click while waiting
+    release(json(201, draft));
+    expect(await screen.findByText(/472 people/)).toBeInTheDocument();
+    expect(calls.filter((c) => c.method === 'POST' && c.url.endsWith('/announcements/'))).toHaveLength(1);
+  });
+
+  it('opens the form again if the confirmation is dismissed, and Publish again updates that draft instead of making another', async () => {
+    const calls = stub((url, init) => {
+      if (url.endsWith('/announcements/') && init.method === 'POST') return json(201, draft);
+      if (url.endsWith(`/announcements/${draft.id}/`) && init.method === 'PATCH') return json(200, draft);
+      return undefined;
+    });
+    mount(null);
+    await fill();
+    await userEvent.click(screen.getByRole('button', { name: 'Publish…' }));
+    await screen.findByText(/472 people/);
+    await userEvent.click(screen.getByRole('button', { name: 'Cancel' }));
+    await waitFor(() => expect(screen.getByLabelText('Title (English)')).toBeEnabled());
+    await userEvent.type(screen.getByLabelText('Title (English)'), '!');
+    await userEvent.click(screen.getByRole('button', { name: 'Publish…' }));
+    await screen.findByText(/472 people/);
+    expect(calls.filter((c) => c.method === 'POST' && c.url.endsWith('/announcements/'))).toHaveLength(1);
+    expect(calls.filter((c) => c.method === 'PATCH')).toHaveLength(1);
+  });
+});
+
 describe('a draft', () => {
   it('asks for confirmation with the number of people before publishing, then saves and publishes', async () => {
     const calls = stub((url, init) => {

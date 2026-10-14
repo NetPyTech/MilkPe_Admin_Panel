@@ -1,7 +1,7 @@
 'use client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
@@ -38,10 +38,16 @@ function EditorForm({ announcement, meta, segments }: { announcement: Announceme
   const [dialog, setDialog] = useState<null | 'publish' | 'delete' | 'retract' | 'cancel'>(null);
   const [audience, setAudience] = useState<number | null>(null);
   const [audienceWarnings, setAudienceWarnings] = useState<string[]>([]);
+  // A new announcement is saved as a draft the moment Publish… is pressed (so the people it reaches can be counted). The page stays where it is until
+  // it has gone out; this is the draft's id meanwhile, so every later save updates that draft instead of making another.
+  const [draftId, setDraftId] = useState<string | null>(null);
+  const [preparing, setPreparing] = useState(false);
+  const counted = useRef<string | null>(null);   // exactly what was saved and counted for the confirmation
   const setForm = (change: Partial<Form>) => setFormState((current) => ({ ...current, ...change }));
 
   const status = announcement?.status ?? 'draft';
   const id = announcement?.id ?? null;
+  const workingId = id ?? draftId;
   const readOnly = status === 'retracted';
   const lockedAll = status === 'sending' || status === 'sent' || readOnly;
   const problems = problemsIn(form, meta);
@@ -52,20 +58,23 @@ function EditorForm({ announcement, meta, segments }: { announcement: Announceme
   /** Save what the form says; for a message already sent only its text and expiry can change. Returns the announcement id. */
   async function save(): Promise<string> {
     const body = payloadFromForm(form, savedLanguages);
-    if (!id) {
+    if (!workingId) {
       const created = await api(ANNOUNCEMENT, announcementDetailSchema.partial({ stats: true }), { method: 'POST', body });
+      setDraftId(created.id);
       return created.id;
     }
     const sendable = lockedAll ? { translations: body.translations, expires_at: body.expires_at } : body;
-    await api(`${ANNOUNCEMENT}${id}/`, announcementDetailSchema.partial({ stats: true }), { method: 'PATCH', body: sendable });
-    return id;
+    await api(`${ANNOUNCEMENT}${workingId}/`, announcementDetailSchema.partial({ stats: true }), { method: 'PATCH', body: sendable });
+    return workingId;
   }
 
   const run = useMutation({
     mutationFn: async (action: 'save' | 'test' | 'publish') => {
       setError('');
-      // Publishing was already saved when the confirmation opened (so the audience could be counted), and the form cannot change behind it.
-      const savedId = action === 'publish' && id ? id : await save();
+      // Publishing was already saved when the confirmation opened (so the audience could be counted), and the form is frozen until it is answered:
+      // what goes out is exactly what was counted. If the form is somehow not what was counted, nothing is sent.
+      if (action === 'publish' && counted.current !== JSON.stringify(form)) throw new Error('The announcement changed after the people were counted. Close this and press Publish again.');
+      const savedId = action === 'publish' && workingId ? workingId : await save();
       if (action === 'test') await api(`${ANNOUNCEMENT}${savedId}/test/`, z.unknown(), { method: 'POST', body: {} });
       if (action === 'publish') {
         const send = payloadFromForm(form).send_at;
@@ -95,19 +104,26 @@ function EditorForm({ announcement, meta, segments }: { announcement: Announceme
   });
 
   async function openPublish() {
+    if (preparing) return;   // a second click while the first is saving must not save (or create a draft) again
     setError('');
+    setPreparing(true);
     try {
+      const snapshot = JSON.stringify(form);
       const savedId = await save();
-      const counted = await fetchAudienceCount(savedId);
-      setAudience(counted.count);
-      setAudienceWarnings(counted.warnings);
-      if (!id) router.replace(`/outreach/announcements/${savedId}`);
+      const people = await fetchAudienceCount(savedId);
+      counted.current = snapshot;
+      setAudience(people.count);
+      setAudienceWarnings(people.warnings);
       setDialog('publish');
     } catch (failure) {
       setError(failure instanceof Error ? failure.message : 'Something went wrong.');
+    } finally {
+      setPreparing(false);
     }
   }
 
+  // The form cannot change while it is being saved and counted, nor while the confirmation is up: what is confirmed is what is saved.
+  const frozen = preparing || run.isPending || dialog === 'publish';
   const when = form.schedule === 'later' ? `at ${form.sendDate} ${form.sendTime} (India time)` : 'now';
   return (
     <div className="max-w-4xl space-y-8">
@@ -121,18 +137,18 @@ function EditorForm({ announcement, meta, segments }: { announcement: Announceme
       {lockedAll && !readOnly ? <p className="text-sm text-muted-foreground">This has been sent: only its text and expiry can change (the text updates in people&apos;s inboxes). A push that went out cannot be recalled.</p> : null}
       {readOnly ? <p className="text-sm text-muted-foreground">This was retracted. It is hidden from everyone and can no longer be edited.</p> : null}
 
-      <section className="space-y-4"><h2 className="text-sm font-medium">Who</h2><AudiencePicker form={form} setForm={setForm} meta={meta} segments={segments} disabled={lockedAll} /></section>
-      <section className="space-y-4"><h2 className="text-sm font-medium">What</h2><TextsEditor form={form} setForm={setForm} meta={meta} disabled={readOnly} /></section>
-      <section className="space-y-4"><h2 className="text-sm font-medium">How and when</h2><DeliveryFields form={form} setForm={setForm} meta={meta} lockedAll={lockedAll} lockedText={readOnly} /></section>
+      <section className="space-y-4"><h2 className="text-sm font-medium">Who</h2><AudiencePicker form={form} setForm={setForm} meta={meta} segments={segments} disabled={lockedAll || frozen} /></section>
+      <section className="space-y-4"><h2 className="text-sm font-medium">What</h2><TextsEditor form={form} setForm={setForm} meta={meta} disabled={readOnly || frozen} /></section>
+      <section className="space-y-4"><h2 className="text-sm font-medium">How and when</h2><DeliveryFields form={form} setForm={setForm} meta={meta} lockedAll={lockedAll || frozen} lockedText={readOnly || frozen} /></section>
 
       {error ? <p role="alert" className="text-sm text-destructive">{error}</p> : null}
       {!readOnly && problems.length ? <ul className="list-disc space-y-1 pl-5 text-sm text-muted-foreground">{problems.map((p) => <li key={p}>{p}</li>)}</ul> : null}
 
       {!readOnly ? (
         <div className="flex flex-wrap gap-3 border-t pt-4">
-          <Button variant="outline" onClick={() => run.mutate('save')} disabled={run.isPending}>{status === 'draft' ? 'Save draft' : 'Save changes'}</Button>
-          {!lockedAll ? <Button variant="outline" onClick={() => run.mutate('test')} disabled={run.isPending || problems.length > 0}>Send a test to me</Button> : null}
-          {!lockedAll ? <Button onClick={openPublish} disabled={run.isPending || problems.length > 0}>Publish…</Button> : null}
+          <Button variant="outline" onClick={() => run.mutate('save')} disabled={frozen}>{status === 'draft' ? 'Save draft' : 'Save changes'}</Button>
+          {!lockedAll ? <Button variant="outline" onClick={() => run.mutate('test')} disabled={frozen || problems.length > 0}>Send a test to me</Button> : null}
+          {!lockedAll ? <Button onClick={openPublish} disabled={frozen || problems.length > 0}>Publish…</Button> : null}
           {status === 'scheduled' ? <Button variant="outline" onClick={() => setDialog('cancel')}>Cancel schedule</Button> : null}
           {status === 'draft' && id ? <Button variant="ghost" onClick={() => setDialog('delete')}>Delete draft</Button> : null}
           {status === 'sending' || status === 'sent' ? <Button variant="destructive" onClick={() => setDialog('retract')}>Retract</Button> : null}

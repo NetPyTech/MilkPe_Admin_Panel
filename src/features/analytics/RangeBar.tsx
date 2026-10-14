@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
@@ -11,14 +12,25 @@ export function rangeOf(values: Record<string, string>): Record<string, string> 
 }
 
 export function RangeBar({ values, onChange }: { values: Record<string, string>; onChange: (changes: Record<string, string | undefined>) => void }) {
-  const custom = !!(values.from || values.to);
+  // Choosing "Custom range" has nothing to put in the address yet (no dates are picked), so the choice itself is kept here; dates in the address
+  // (a shared link, a reload) always mean custom.
+  const [chosenCustom, setChosenCustom] = useState(false);
+  const custom = !!(values.from || values.to) || chosenCustom;
   const selected = custom ? 'custom' : values.days ?? '30';
   return (
     <div className="flex flex-wrap items-end gap-3">
       <div className="space-y-1.5">
         <Label htmlFor="range-preset">Period</Label>
         <select id="range-preset" value={selected}
-          onChange={(e) => (e.target.value === 'custom' ? onChange({ days: undefined, from: values.from ?? '', to: values.to ?? '' }) : onChange({ days: e.target.value, from: undefined, to: undefined }))}
+          onChange={(e) => {
+            if (e.target.value === 'custom') {
+              setChosenCustom(true);
+              onChange({ days: undefined });   // the dates come next; until then the charts keep the default period
+            } else {
+              setChosenCustom(false);
+              onChange({ days: e.target.value, from: undefined, to: undefined });
+            }
+          }}
           className="h-8 rounded-lg border border-input bg-transparent px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
           {PRESETS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
         </select>

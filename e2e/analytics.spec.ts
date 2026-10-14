@@ -30,3 +30,18 @@ test('the trend range can be switched and a chart can be read as a table', async
   await expect(page.getByRole('table').first()).toBeVisible();
   await expect(page.getByRole('table').first().locator('tbody tr')).toHaveCount(7);
 });
+
+test('choosing a custom range shows the date fields, and the dates picked set the period', async ({ page }) => {
+  await signIn(page);
+  await page.getByRole('link', { name: 'Growth' }).click();
+  await page.waitForLoadState('networkidle');
+  await page.getByLabel('Period').selectOption('90');
+  await page.waitForURL(/days=90/);
+  await page.getByLabel('Period').selectOption('custom');
+  await expect(page.getByLabel('From', { exact: true })).toBeVisible();
+  await expect(page.getByLabel('To', { exact: true })).toBeVisible();
+  await expect(page.getByLabel('Period')).toHaveValue('custom');
+  await page.getByLabel('From', { exact: true }).fill('2026-10-01');
+  await page.waitForURL(/from=2026-10-01/);
+  await expect(page.getByLabel('Period')).toHaveValue('custom');
+});

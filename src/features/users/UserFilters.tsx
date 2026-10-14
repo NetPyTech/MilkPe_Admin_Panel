@@ -1,8 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useSearchBox } from '@/lib/useSearchBox';
 
 type Props = { values: Record<string, string>; onChange: (changes: Record<string, string | undefined>) => void; onClear: () => void };
 
@@ -28,18 +28,13 @@ function Select({ id, label, value, options, onChange }: { id: string; label: st
 }
 
 export function UserFilters({ values, onChange, onClear }: Props) {
-  const [search, setSearch] = useState(values.search ?? '');
-  useEffect(() => {
-    if (search === (values.search ?? '')) return;
-    const timer = setTimeout(() => onChange({ search: search.trim() || undefined }), 300);
-    return () => clearTimeout(timer);
-  }, [search, values.search, onChange]);
+  const search = useSearchBox(values.search, (value) => onChange({ search: value }));
 
   return (
     <div className="grid gap-3 rounded-lg border p-4 sm:grid-cols-2 lg:grid-cols-4">
       <div className="space-y-1.5 lg:col-span-2">
         <Label htmlFor="f-search">Search</Label>
-        <Input id="f-search" placeholder="Name, email, phone or ID" value={search} onValueChange={setSearch} />
+        <Input id="f-search" placeholder="Name, email, phone or ID" value={search.text} onValueChange={search.onType} />
       </div>
       <Select id="f-role" label="Role" value={values.role ?? ''} options={OPTIONS.role} onChange={(v) => onChange({ role: v || undefined })} />
       <Select id="f-language" label="Language" value={values.language ?? ''} options={OPTIONS.language} onChange={(v) => onChange({ language: v || undefined })} />
@@ -54,7 +49,7 @@ export function UserFilters({ values, onChange, onClear }: Props) {
         <Label htmlFor="f-to">Joined to</Label>
         <Input id="f-to" type="date" value={values.joined_to ?? ''} onValueChange={(v) => onChange({ joined_to: v || undefined })} />
       </div>
-      <div className="flex items-end lg:col-span-4"><Button variant="ghost" size="sm" onClick={() => { setSearch(''); onClear(); }}>Clear filters</Button></div>
+      <div className="flex items-end lg:col-span-4"><Button variant="ghost" size="sm" onClick={() => { search.clear(); onClear(); }}>Clear filters</Button></div>
     </div>
   );
 }

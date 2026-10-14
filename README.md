@@ -33,7 +33,10 @@ npm run e2e                    # Playwright, see below
 They sign in against a real backend on the **local** database (never the cloud one in the backend's `.env`):
 start the backend with `DATABASE_URL='postgresql://elt@/milkpe_local?host=/var/run/postgresql' DJANGO_TESTING=True OTP_CONSOLE_MODE=True REDIS_URL=`
 and every `THROTTLE_RATE_*` raised (see the backend's `CLAUDE.md`, including `THROTTLE_RATE_SUPERADMIN_ADMIN` and `..._WRITE`), then `npm run e2e`.
-`e2e/global-setup.ts` seeds an administrator and a dairy owner through the backend's `manage.py shell`. Playwright's Chromium needs the usual
+`e2e/global-setup.ts` seeds an administrator and a dairy owner through the backend's `manage.py shell`. It finds the backend checked out next to this
+app (`../MilkPe_Backend`, with its `.venv`) and a Postgres database `milkpe_local` on a local socket as the current user; set `DJANGO_BACKEND_DIR`,
+`DJANGO_PYTHON` or `E2E_DATABASE_URL` to use another checkout, interpreter or database. The setup refuses any database that is not on this machine
+(a remote host, a cloud URL, a non-Postgres scheme) before it writes anything. Playwright's Chromium needs the usual
 system libraries (`npx playwright install-deps chromium`) and fonts.
 
 ## Visitor address and sign-in limits
