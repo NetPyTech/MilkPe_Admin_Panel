@@ -18,7 +18,7 @@ function GrowthScreen() {
   const router = useRouter();
   const params = useSearchParams();
   const tab = params.get('tab') ?? 'trends';
-  const values = readFilters(params, ['days', 'from', 'to']);
+  const values = readFilters(params, ['days', 'from', 'to', 'range']);
   const range = rangeOf(values);
   const change = useCallback((changes: Record<string, string | undefined>) => {
     router.replace(`/growth?${withFilters(new URLSearchParams(window.location.search), changes)}`);

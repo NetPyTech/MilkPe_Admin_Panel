@@ -165,6 +165,31 @@ describe('publishing a new announcement', () => {
     expect(calls.filter((c) => c.method === 'POST' && c.url.endsWith('/announcements/'))).toHaveLength(1);
     expect(calls.filter((c) => c.method === 'PATCH')).toHaveLength(1);
   });
+
+  it('removes a translation that was saved by Publish… and cleared before publishing again', async () => {
+    const calls = stub((url, init) => {
+      if (url.endsWith('/announcements/') && init.method === 'POST') return json(201, draft);
+      if (url.endsWith(`/announcements/${draft.id}/`) && init.method === 'PATCH') return json(200, draft);
+      return undefined;
+    });
+    mount(null);
+    await fill();
+    const languages = screen.getByRole('group', { name: 'Languages' });
+    const other = within(languages).getAllByRole('button').find((b) => b.textContent && !/english/i.test(b.textContent))!;
+    await userEvent.click(other);
+    await userEvent.type(screen.getByLabelText(/^Title \(/), 'Namaste');
+    await userEvent.type(screen.getByLabelText(/^Message \(/), 'Recharge karein');
+    await userEvent.click(screen.getByRole('button', { name: 'Publish…' }));
+    await screen.findByText(/472 people/);
+    await userEvent.click(screen.getByRole('button', { name: 'Cancel' }));
+    await waitFor(() => expect(screen.getByLabelText(/^Title \(/)).toBeEnabled());
+    await userEvent.clear(screen.getByLabelText(/^Title \(/));
+    await userEvent.clear(screen.getByLabelText(/^Message \(/));
+    await userEvent.click(screen.getByRole('button', { name: 'Publish…' }));
+    await screen.findByText(/472 people/);
+    const patch = calls.find((c) => c.method === 'PATCH')!.body as { translations: Record<string, unknown> };
+    expect(Object.values(patch.translations)).toContain(null);   // the cleared language is removed, not left behind
+  });
 });
 
 describe('a draft', () => {

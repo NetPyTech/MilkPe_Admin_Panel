@@ -19,6 +19,27 @@ function InAddress({ start = '' }: { start?: string }) {
 }
 
 describe('RangeBar', () => {
+  it('goes back to the default period when the address is replaced by a plain link to the page', async () => {
+    function Harness() {
+      const [search, setSearch] = useState('days=90');
+      const values = Object.fromEntries(new URLSearchParams(search).entries());
+      return (
+        <>
+          <RangeBar values={values} onChange={(changes) => setSearch(withFilters(new URLSearchParams(search), changes))} />
+          <button onClick={() => setSearch('')}>Growth link</button>
+          <output aria-label="query">{JSON.stringify(rangeOf(values))}</output>
+        </>
+      );
+    }
+    render(<Harness />);
+    await userEvent.selectOptions(screen.getByLabelText('Period'), 'custom');
+    expect(screen.getByLabelText('From')).toBeInTheDocument();
+    await userEvent.click(screen.getByText('Growth link'));
+    expect(screen.getByLabelText('Period')).toHaveValue('30');
+    expect(screen.queryByLabelText('From')).toBeNull();
+    expect(JSON.parse(screen.getByLabelText('query').textContent ?? '{}')).toEqual({ days: '30' });
+  });
+
   it('choosing Custom range from a preset shows the From and To fields, and the charts keep the last period until dates are picked', async () => {
     render(<InAddress start="days=90" />);
     expect(screen.queryByLabelText('From')).toBeNull();

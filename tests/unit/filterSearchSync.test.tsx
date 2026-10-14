@@ -36,4 +36,19 @@ describe.each(cases)('%s search box', (_name, label, make) => {
     expect(onChange).toHaveBeenCalledTimes(1);
     expect(onChange).toHaveBeenCalledWith({ search: 'Ramesh' });
   });
+
+  it('keeps newer typing when an earlier search reaches the address late', async () => {
+    const onChange = vi.fn();
+    const { rerender } = render(make({}, onChange));
+    await userEvent.type(screen.getByLabelText(label), 'ram', { delay: null });
+    act(() => { vi.advanceTimersByTime(400); });
+    expect(onChange).toHaveBeenLastCalledWith({ search: 'ram' });
+    await userEvent.type(screen.getByLabelText(label), 'esh', { delay: null });   // still typing while the page change is under way
+    rerender(make({ search: 'ram' }, onChange));                                  // the first search reaches the address
+    expect(screen.getByLabelText(label)).toHaveValue('ramesh');
+    act(() => { vi.advanceTimersByTime(400); });
+    expect(onChange).toHaveBeenLastCalledWith({ search: 'ramesh' });              // and the newer text was still sent
+    rerender(make({ search: 'ramesh' }, onChange));
+    expect(screen.getByLabelText(label)).toHaveValue('ramesh');
+  });
 });

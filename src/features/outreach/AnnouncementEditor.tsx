@@ -42,6 +42,9 @@ function EditorForm({ announcement, meta, segments }: { announcement: Announceme
   // it has gone out; this is the draft's id meanwhile, so every later save updates that draft instead of making another.
   const [draftId, setDraftId] = useState<string | null>(null);
   const [preparing, setPreparing] = useState(false);
+  // The languages stored on the server after the latest save. A save that has not been refetched yet (Publish… saves, then may be cancelled) would
+  // otherwise leave this out of date, and a language cleared afterwards would be left out of the next save instead of removed (null).
+  const savedCodes = useRef<string[] | null>(null);
   const counted = useRef<string | null>(null);   // exactly what was saved and counted for the confirmation
   const setForm = (change: Partial<Form>) => setFormState((current) => ({ ...current, ...change }));
 
@@ -51,20 +54,24 @@ function EditorForm({ announcement, meta, segments }: { announcement: Announceme
   const readOnly = status === 'retracted';
   const lockedAll = status === 'sending' || status === 'sent' || readOnly;
   const problems = problemsIn(form, meta);
-  const savedLanguages = announcement ? Object.keys(announcement.translations) : [];
 
   const refresh = () => Promise.all(['announcement', 'announcements'].map((key) => queryClient.invalidateQueries({ queryKey: ['outreach', key] })));
 
   /** Save what the form says; for a message already sent only its text and expiry can change. Returns the announcement id. */
   async function save(): Promise<string> {
-    const body = payloadFromForm(form, savedLanguages);
+    const known = savedCodes.current ?? (announcement ? Object.keys(announcement.translations) : []);
+    const body = payloadFromForm(form, known);
+    const translations = body.translations as Record<string, unknown>;
+    const stored = () => [...new Set([...known, ...Object.keys(translations)])].filter((code) => translations[code] !== null);
     if (!workingId) {
       const created = await api(ANNOUNCEMENT, announcementDetailSchema.partial({ stats: true }), { method: 'POST', body });
       setDraftId(created.id);
+      savedCodes.current = stored();
       return created.id;
     }
     const sendable = lockedAll ? { translations: body.translations, expires_at: body.expires_at } : body;
     await api(`${ANNOUNCEMENT}${workingId}/`, announcementDetailSchema.partial({ stats: true }), { method: 'PATCH', body: sendable });
+    savedCodes.current = stored();
     return workingId;
   }
 
