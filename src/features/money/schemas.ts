@@ -11,7 +11,7 @@ export type PaymentRow = z.infer<typeof paymentRowSchema>;
 const amount = z.string();
 export const revenueBucketSchema = z.object({
   recharge_count: z.number(), recharge_amount: amount, bonus_amount: amount, fee_amount: amount, referral_payout: amount,
-  adjustment_credit: amount, adjustment_debit: amount,
+  adjustment_credit: amount, adjustment_debit: amount, subscription_amount: amount, subscription_count: z.number(),
 });
 export const revenueSchema = z.object({
   from: z.string(), to: z.string(), group: z.enum(['day', 'week', 'month']),

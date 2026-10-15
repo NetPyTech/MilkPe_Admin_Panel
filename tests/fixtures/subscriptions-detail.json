@@ -1,0 +1,42 @@
+{
+  "id": "d567a126-0573-4ea0-b355-d69f18c70f14",
+  "state": "active",
+  "status": "paid",
+  "source": "grant",
+  "user": {
+    "id": "77867152-7b4f-467b-8bcd-e8deb215ea33",
+    "phone_number": "+919784587596",
+    "name": null
+  },
+  "plan": {
+    "id": "7347ec83-0b31-4f7c-aacd-56df4c1f01df",
+    "name": "Starter 77f3"
+  },
+  "price": "0.00",
+  "duration_days": 10,
+  "cap_period": "month",
+  "weight_cap_kg": "2000.00",
+  "collections_cap": 900,
+  "suppliers_cap": 50,
+  "reports_cap": 20,
+  "unlimited": false,
+  "starts_at": "2026-10-15T10:22:14.675680Z",
+  "ends_at": "2026-10-25T10:22:14.675680Z",
+  "paid_at": "2026-10-15T10:22:14.675680Z",
+  "created_at": "2026-10-15T10:22:14.673858Z",
+  "cancelled_at": null,
+  "razorpay_order_id": null,
+  "razorpay_payment_id": null,
+  "reason": "Goodwill after an outage",
+  "granted_by": "+919999900001",
+  "usage": [
+    {
+      "index": 0,
+      "starts_at": "2026-10-15T10:22:14.675680Z",
+      "ends_at": "2026-10-25T10:22:14.675680Z",
+      "weight_kg": "100.00",
+      "collections": 1,
+      "reports": 0
+    }
+  ]
+}

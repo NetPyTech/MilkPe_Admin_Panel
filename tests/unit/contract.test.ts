@@ -32,6 +32,16 @@ import balances from '../fixtures/balances.json';
 import payments from '../fixtures/payments-list.json';
 import revenue from '../fixtures/revenue.json';
 import users from '../fixtures/users-list.json';
+import p_list from '../fixtures/plans-list.json';
+import p_detail from '../fixtures/plans-detail.json';
+import p_create from '../fixtures/plans-create.json';
+import p_unlimited from '../fixtures/plans-create-unlimited.json';
+import s_list from '../fixtures/subscriptions-list.json';
+import s_detail from '../fixtures/subscriptions-detail.json';
+import s_overview from '../fixtures/subscriptions-overview.json';
+import s_extend from '../fixtures/subscriptions-extend.json';
+import p_grant from '../fixtures/plans-grant.json';
+import * as plans from '@/features/plans/schemas';
 import { page } from '@/lib/api';
 import { auditRowSchema } from '@/features/audit/schemas';
 import * as analytics from '@/features/analytics/schemas';
@@ -45,6 +55,20 @@ describe('the schemas accept what the real server sends', () => {
   it('payments list', () => expect(page(paymentRowSchema).safeParse(payments).success).toBe(true));
   it('revenue', () => expect(revenueSchema.safeParse(revenue).success).toBe(true));
   it('balances', () => expect(balancesSchema.safeParse(balances).success).toBe(true));
+  it('plans: list, one plan, a created plan (limited and unlimited)', () => {
+    expect(plans.planListSchema.safeParse(p_list).success).toBe(true);
+    expect(plans.planSchema.safeParse(p_detail).success).toBe(true);
+    expect(plans.planSchema.safeParse(p_create).success).toBe(true);
+    expect(plans.planSchema.safeParse(p_unlimited).success).toBe(true);
+    expect(p_unlimited.unlimited).toBe(true);
+  });
+  it('subscriptions: list, detail with usage, overview, extension, grant', () => {
+    expect(page(plans.subscriptionRowSchema).safeParse(s_list).success).toBe(true);
+    expect(plans.subscriptionDetailSchema.safeParse(s_detail).success).toBe(true);
+    expect(plans.subscriptionDetailSchema.safeParse(s_extend).success).toBe(true);
+    expect(plans.subscriptionRowSchema.safeParse(p_grant).success).toBe(true);
+    expect(plans.overviewSchema.safeParse(s_overview).success).toBe(true);
+  });
   it('health report', () => expect(healthSchemas.healthSchema.safeParse(c_health).success).toBe(true));
   it('controls: settings, history, deletion requests, trial extension', () => {
     expect(controls.configListSchema.safeParse(c_config).success).toBe(true);

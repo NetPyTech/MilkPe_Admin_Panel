@@ -1,66 +1,90 @@
 {
-  "from": "2026-09-15",
-  "to": "2026-10-14",
+  "from": "2026-09-16",
+  "to": "2026-10-15",
   "group": "day",
   "buckets": [
     {
       "period": "2026-09-25",
       "recharge_count": 0,
+      "subscription_count": 0,
       "recharge_amount": "0.00",
       "bonus_amount": "0.00",
       "fee_amount": "444.84",
       "referral_payout": "25800.00",
       "adjustment_credit": "0.00",
-      "adjustment_debit": "0.00"
+      "adjustment_debit": "0.00",
+      "subscription_amount": "0.00"
     },
     {
       "period": "2026-09-27",
       "recharge_count": 0,
+      "subscription_count": 0,
       "recharge_amount": "0.00",
       "bonus_amount": "0.00",
       "fee_amount": "0.00",
       "referral_payout": "6600.00",
       "adjustment_credit": "0.00",
-      "adjustment_debit": "0.00"
+      "adjustment_debit": "0.00",
+      "subscription_amount": "0.00"
     },
     {
       "period": "2026-09-29",
       "recharge_count": 0,
+      "subscription_count": 0,
       "recharge_amount": "0.00",
       "bonus_amount": "0.00",
       "fee_amount": "0.00",
       "referral_payout": "450.00",
       "adjustment_credit": "0.00",
-      "adjustment_debit": "0.00"
+      "adjustment_debit": "0.00",
+      "subscription_amount": "0.00"
     },
     {
       "period": "2026-10-01",
       "recharge_count": 0,
+      "subscription_count": 0,
       "recharge_amount": "0.00",
       "bonus_amount": "0.00",
       "fee_amount": "0.00",
       "referral_payout": "1650.00",
       "adjustment_credit": "0.00",
-      "adjustment_debit": "0.00"
+      "adjustment_debit": "0.00",
+      "subscription_amount": "0.00"
     },
     {
       "period": "2026-10-14",
       "recharge_count": 0,
+      "subscription_count": 0,
       "recharge_amount": "0.00",
       "bonus_amount": "0.00",
       "fee_amount": "0.00",
       "referral_payout": "16650.00",
-      "adjustment_credit": "453.00",
-      "adjustment_debit": "51.00"
+      "adjustment_credit": "528.00",
+      "adjustment_debit": "51.00",
+      "subscription_amount": "0.00"
+    },
+    {
+      "period": "2026-10-15",
+      "recharge_count": 0,
+      "subscription_count": 0,
+      "recharge_amount": "0.00",
+      "bonus_amount": "0.00",
+      "fee_amount": "49.44",
+      "referral_payout": "6900.00",
+      "adjustment_credit": "1899.50",
+      "adjustment_debit": "204.00",
+      "subscription_amount": "0.00"
     }
   ],
   "totals": {
     "recharge_amount": "0.00",
     "bonus_amount": "0.00",
-    "fee_amount": "444.84",
-    "referral_payout": "51150.00",
-    "adjustment_credit": "453.00",
-    "adjustment_debit": "51.00",
-    "recharge_count": 0
+    "fee_amount": "494.28",
+    "referral_payout": "58050.00",
+    "adjustment_credit": "2427.50",
+    "adjustment_debit": "255.00",
+    "subscription_amount": "0.00",
+    "recharge_count": 0,
+    "subscription_count": 0
   }
 }

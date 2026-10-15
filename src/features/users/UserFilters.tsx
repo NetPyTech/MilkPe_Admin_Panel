@@ -1,4 +1,5 @@
 'use client';
+import { SELECT_CLASS } from '@/lib/styles';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -6,7 +7,7 @@ import { useSearchBox } from '@/lib/useSearchBox';
 
 type Props = { values: Record<string, string>; onChange: (changes: Record<string, string | undefined>) => void; onClear: () => void };
 
-const SELECT = 'h-8 w-full rounded-lg border border-input bg-transparent px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50';
+const SELECT = SELECT_CLASS;
 
 const OPTIONS = {
   role: [['', 'Any role'], ['buyer', 'Buyer'], ['seller', 'Seller'], ['both', 'Both'], ['none', 'No role yet']],
@@ -14,6 +15,7 @@ const OPTIONS = {
   is_active: [['', 'Active and deactivated'], ['true', 'Active'], ['false', 'Deactivated']],
   has_logged_in: [['', 'Real users'], ['any', 'Include placeholders'], ['false', 'Placeholders only']],
   trial: [['', 'Any'], ['active', 'Running'], ['ending', 'Ending within 7 days'], ['ended', 'Ended']],
+  plan: [['', 'Any'], ['active', 'Plan running'], ['ending', 'Plan ends within 7 days'], ['expired', 'Plan has ended'], ['none', 'No plan running']],
 } as const;
 
 function Select({ id, label, value, options, onChange }: { id: string; label: string; value: string; options: readonly (readonly [string, string])[]; onChange: (value: string) => void }) {
@@ -41,6 +43,7 @@ export function UserFilters({ values, onChange, onClear }: Props) {
       <Select id="f-active" label="Status" value={values.is_active ?? ''} options={OPTIONS.is_active} onChange={(v) => onChange({ is_active: v || undefined })} />
       <Select id="f-logged" label="Accounts" value={values.has_logged_in ?? ''} options={OPTIONS.has_logged_in} onChange={(v) => onChange({ has_logged_in: v || undefined })} />
       <Select id="f-trial" label="Free trial" value={values.trial ?? ''} options={OPTIONS.trial} onChange={(v) => onChange({ trial: v || undefined })} />
+      <Select id="f-plan" label="Subscription plan" value={values.plan ?? ''} options={OPTIONS.plan} onChange={(v) => onChange({ plan: v || undefined })} />
       <div className="space-y-1.5">
         <Label htmlFor="f-from">Joined from</Label>
         <Input id="f-from" type="date" value={values.joined_from ?? ''} onValueChange={(v) => onChange({ joined_from: v || undefined })} />

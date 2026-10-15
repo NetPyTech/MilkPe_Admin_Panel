@@ -56,6 +56,10 @@ low-balance levels, referral bonus, minimum app version, workspace ranking, coll
 a dairy owner's page needs a written reason and is audited. A change reaches every backend server within 30 seconds. The *Account deletion* tab
 works the queue of requests people send from the app: approve or reject, then "Close account" when ready.
 
+## Plans
+
+`/plans` is where the owner makes and manages subscription plans. The **Plans** tab lists every plan (on sale or not) with its price, length, limits and how many dairies hold it; *New plan* / *Edit* open a form for the name, description and badge (in English and the five other app languages, with a preview of the card as the app shows it), the price and length, the four limits (milk weight, number of collections, suppliers, reports, each on or off; all off is the full plan) and how often they start again. *Take off sale* and *Delete* (only for a plan nobody ever held) ask for a reason. Dairies that already hold a plan keep the terms they paid for. The **Subscriptions** tab shows the numbers (running, waiting, ending, bought, stuck payments), filters, and per-row *Usage*, *Extend*, *Cancel* and *Reconcile* (settles a payment Razorpay captured that the app never confirmed). A dairy's own page has *Give a plan* (a gift, no payment), the Users list filters by plan, and Money > Revenue shows plan sales. Contracts: the backend's `api_docs/admin_subscriptions_api.md`.
+
 ## Deploy
 
 `docker build -t milkpe-admin .` then run with `DJANGO_API_URL` and `SESSION_SECRET`, port 3100. Serve it over **HTTPS** and keep it behind an

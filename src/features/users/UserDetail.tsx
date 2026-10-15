@@ -5,10 +5,12 @@ import { AdjustWalletDialog } from '@/features/money/AdjustWalletDialog';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { formatDate, formatDateTime, formatInr } from '@/lib/format';
+import { formatDate, formatDateTime, formatInr, formatUnit } from '@/lib/format';
 import type { UserDetail } from './schemas';
 import { ExtendTrialDialog } from '@/features/controls/ExtendTrialDialog';
 import { UserActions } from './UserActions';
+import { GrantPlanDialog } from '@/features/plans/GrantPlanDialog';
+import { limitsText } from '@/features/plans/form';
 
 function Fields({ items }: { items: [string, ReactNode][] }) {
   return (
@@ -23,12 +25,22 @@ function Fields({ items }: { items: [string, ReactNode][] }) {
   );
 }
 
+const plural = (count: number, one: string, many = `${one}s`) => `${count} ${count === 1 ? one : many}`;
+
+/** "150 kg · 4 collections · 1 report · 3 suppliers": what a plan has covered in the current period. */
+function usageText(usage: NonNullable<NonNullable<UserDetail['subscription']>['current']>['usage'] & object) {
+  return [formatUnit(usage.weight_kg, 'kg'), plural(usage.collections, 'collection'), plural(usage.reports, 'report'),
+    ...(usage.suppliers !== null ? [plural(usage.suppliers, 'supplier')] : []), ...(usage.volume_used_up ? ['milk limit reached'] : [])].join(' · ');
+}
+
 const Empty = ({ children }: { children: ReactNode }) => <p className="py-6 text-sm text-muted-foreground">{children}</p>;
 
 export function UserDetailView({ data }: { data: UserDetail }) {
   const { user, profile, buyer, seller, wallet, referral } = data;
   const [adjusting, setAdjusting] = useState(false);
   const [extending, setExtending] = useState(false);
+  const [granting, setGranting] = useState(false);
+  const plans = data.subscription;   // undefined when the backend predates plans
   const place = [user.district, user.state].filter(Boolean).join(', ');
   return (
     <div className="space-y-6">
@@ -74,6 +86,26 @@ export function UserDetailView({ data }: { data: UserDetail }) {
                   endsAt={buyer.trial_ends_at} remaining={buyer.trial_days_remaining} onClose={() => setExtending(false)} />
               ) : null}
             </>
+          ) : null}
+          {buyer && plans ? (
+            <section className="space-y-3" aria-label="Subscription plan">
+              <h2 className="text-sm font-medium">Subscription plan</h2>
+              {plans.current ? (
+                <Fields items={[['Running', `${plans.current.name} (${plans.current.source === 'grant' ? 'gift' : formatInr(plans.current.price)})`],
+                  ['Ends', `${formatDate(plans.current.ends_at)} (${plans.current.days_left} days left)`], ['Limits', limitsText(plans.current)],
+                  ['Used this period', plans.current.usage ? usageText(plans.current.usage) : null]]} />
+              ) : (buyer.trial_days_remaining ?? 0) > 0 ? (
+                <p className="text-sm text-muted-foreground">
+                  In the free trial ({buyer.trial_days_remaining} days left): no collection fee is taken yet. A plan given now starts when the trial ends.
+                </p>
+              ) : <p className="text-sm text-muted-foreground">No plan is running: the wallet pays the collection fee.</p>}
+              {plans.upcoming.map((item) => (
+                <p key={item.id} className="text-sm text-muted-foreground">Next: {item.name}, {formatDate(item.starts_at)} – {formatDate(item.ends_at)}.</p>
+              ))}
+              <p className="text-xs text-muted-foreground">{plans.held} plan{plans.held === 1 ? '' : 's'} bought or given so far.</p>
+              <Button variant="outline" onClick={() => setGranting(true)}>Give a plan</Button>
+              {granting ? <GrantPlanDialog userId={user.id} who={user.name || user.phone_number} onClose={() => setGranting(false)} /> : null}
+            </section>
           ) : null}
           {seller ? (
             <Fields items={[['Business', seller.business_name], ['State', seller.state], ['Verified', seller.is_verified ? 'Yes' : 'No'],

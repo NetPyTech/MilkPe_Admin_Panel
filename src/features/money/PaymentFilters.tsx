@@ -1,11 +1,12 @@
 'use client';
+import { SELECT_CLASS } from '@/lib/styles';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useSearchBox } from '@/lib/useSearchBox';
 
 type Props = { values: Record<string, string>; onChange: (changes: Record<string, string | undefined>) => void; onClear: () => void };
-const SELECT = 'h-8 w-full rounded-lg border border-input bg-transparent px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50';
+const SELECT = SELECT_CLASS;
 
 const STATUS = [['', 'Any status'], ['PENDING', 'Pending'], ['SUCCESS', 'Success'], ['FAILED', 'Failed']] as const;
 const CATEGORY = [['', 'Any category'], ['RECHARGE', 'Recharge'], ['RECHARGE_BONUS', 'Recharge bonus'], ['COLLECTION_FEE', 'Collection fee'],

@@ -14,6 +14,7 @@ const detail: UserDetail = {
     trial_extra_days: 0, trial_granted_days: 0, trial_ends_at: '2026-10-31T05:00:00Z', trial_days_remaining: 17 },
   seller: null,
   wallet: { balance: '125.50', transactions: [{ id: 't1', transaction_type: 'CREDIT', status: 'SUCCESS', category: 'RECHARGE', amount: '500.00', description: 'Recharge', created_at: '2026-10-10T05:00:00Z' }] },
+  subscription: { current: null, upcoming: [], held: 0 },
   referral: { code: 'ABC12', referred_by: { id: 'r1', phone_number: '+919893100071' }, referred_count: 2 },
   devices: [{ platform: 'android', is_active: true, last_seen: '2026-10-13T05:00:00Z' }],
   notification_settings: [{ category: 'system', in_app: true, push: false }],
@@ -22,6 +23,43 @@ const detail: UserDetail = {
 };
 
 const view = (data: UserDetail) => render(<QueryClientProvider client={new QueryClient()}><UserDetailView data={data} /></QueryClientProvider>);
+
+describe('the subscription plan of a dairy', () => {
+  const card = { id: 's1', name: 'Starter', state: 'active', source: 'purchase', price: '399.00', duration_days: 30, starts_at: '2026-10-01T05:00:00Z',
+    ends_at: '2026-10-31T05:00:00Z', days_left: 17, cap_period: 'month' as const, weight_cap_kg: '2000.00', collections_cap: null, suppliers_cap: 50, reports_cap: null,
+    unlimited: false, usage: { weight_kg: '150.00', collections: 4, reports: 1, suppliers: 3, volume_used_up: false, resets_at: null } };
+  it('says the wallet pays when no plan runs and the free trial is over, and offers to give one', async () => {
+    view({ ...detail, buyer: { ...detail.buyer!, trial_days_remaining: 0, trial_ends_at: '2026-09-30T05:00:00Z' } });
+    await userEvent.click(screen.getByRole('tab', { name: 'Dairy and supplier' }));
+    expect(screen.getByText(/No plan is running: the wallet pays the collection fee/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Give a plan' })).toBeInTheDocument();
+  });
+  it('does not claim the wallet pays while the free trial is running, and says a plan given now waits for it to end', async () => {
+    view(detail);   // 17 trial days left
+    await userEvent.click(screen.getByRole('tab', { name: 'Dairy and supplier' }));
+    expect(screen.queryByText(/the wallet pays the collection fee/)).not.toBeInTheDocument();
+    expect(screen.getByText(/In the free trial \(17 days left\): no collection fee is taken/)).toBeInTheDocument();
+    expect(screen.getByText(/A plan given now starts when the trial ends/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Give a plan' })).toBeInTheDocument();
+  });
+  it('hides the plan section, and nothing else, when the backend sends no plan block', async () => {
+    const without: Partial<UserDetail> = { ...detail };
+    delete without.subscription;
+    view(without as UserDetail);
+    await userEvent.click(screen.getByRole('tab', { name: 'Dairy and supplier' }));
+    expect(screen.getByText('Sunrise Dairy')).toBeInTheDocument();
+    expect(screen.queryByText('Subscription plan')).not.toBeInTheDocument();
+  });
+  it('shows the running plan with its limits and use, and what comes next', async () => {
+    view({ ...detail, subscription: { current: card, upcoming: [{ ...card, id: 's2', name: 'Pro', starts_at: '2026-10-31T05:00:00Z', ends_at: '2026-11-30T05:00:00Z' }], held: 2 } });
+    await userEvent.click(screen.getByRole('tab', { name: 'Dairy and supplier' }));
+    expect(screen.getByText('Starter (₹399.00)')).toBeInTheDocument();
+    expect(screen.getByText('2,000 kg every 30 days · 50 suppliers')).toBeInTheDocument();
+    expect(screen.getByText(/150 kg · 4 collections · 1 report · 3 suppliers/)).toBeInTheDocument();
+    expect(screen.getByText(/Next: Pro/)).toBeInTheDocument();
+    expect(screen.getByText('2 plans bought or given so far.')).toBeInTheDocument();
+  });
+});
 
 describe('UserDetailView', () => {
   it('shows who the person is and the action that applies', () => {
