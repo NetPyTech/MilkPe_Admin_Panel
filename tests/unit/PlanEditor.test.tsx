@@ -156,7 +156,7 @@ describe('an existing plan', () => {
     expect(screen.getByText(/Change something to save/)).toBeInTheDocument();
   });
 
-  it('sends every language again when one of them changes (the server replaces the translations as a whole)', async () => {
+  it('sends only the language that changed, so another admin’s newer text in a different language is not undone', async () => {
     mount(held);
     await userEvent.click(screen.getByRole('button', { name: /Hindi/ }));
     await userEvent.type(screen.getByLabelText('Badge (Hindi)'), 'सबसे अच्छा');

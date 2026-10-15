@@ -28,10 +28,18 @@ describe('the subscription plan of a dairy', () => {
   const card = { id: 's1', name: 'Starter', state: 'active', source: 'purchase', price: '399.00', duration_days: 30, starts_at: '2026-10-01T05:00:00Z',
     ends_at: '2026-10-31T05:00:00Z', days_left: 17, cap_period: 'month' as const, weight_cap_kg: '2000.00', collections_cap: null, suppliers_cap: 50, reports_cap: null,
     unlimited: false, usage: { weight_kg: '150.00', collections: 4, reports: 1, suppliers: 3, volume_used_up: false, resets_at: null } };
-  it('says the wallet pays when no plan runs, and offers to give one', async () => {
-    view(detail);
+  it('says the wallet pays when no plan runs and the free trial is over, and offers to give one', async () => {
+    view({ ...detail, buyer: { ...detail.buyer!, trial_days_remaining: 0, trial_ends_at: '2026-09-30T05:00:00Z' } });
     await userEvent.click(screen.getByRole('tab', { name: 'Dairy and supplier' }));
     expect(screen.getByText(/No plan is running: the wallet pays the collection fee/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Give a plan' })).toBeInTheDocument();
+  });
+  it('does not claim the wallet pays while the free trial is running, and says a plan given now waits for it to end', async () => {
+    view(detail);   // 17 trial days left
+    await userEvent.click(screen.getByRole('tab', { name: 'Dairy and supplier' }));
+    expect(screen.queryByText(/the wallet pays the collection fee/)).not.toBeInTheDocument();
+    expect(screen.getByText(/In the free trial \(17 days left\): no collection fee is taken/)).toBeInTheDocument();
+    expect(screen.getByText(/A plan given now starts when the trial ends/)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Give a plan' })).toBeInTheDocument();
   });
   it('hides the plan section, and nothing else, when the backend sends no plan block', async () => {

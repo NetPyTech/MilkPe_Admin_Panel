@@ -82,14 +82,21 @@ const sameValue = (key: string, a: unknown, b: unknown) =>
   AMOUNT_KEYS.includes(key) && typeof a === 'string' && typeof b === 'string' && MONEY.test(a) && MONEY.test(b) ? Number(a) === Number(b) : JSON.stringify(a) === JSON.stringify(b);
 
 /** What changed against the saved plan, for a PATCH: only the fields that differ (a field nobody touched is not sent, so it cannot overwrite what someone
- * else saved meanwhile), and the whole translations object when any language changed (the server replaces it as a whole). The reason always goes. */
+ * else saved meanwhile), and of the translations only the languages that differ (the server applies them language by language: one sent replaces that
+ * language, an empty one removes it, the rest are kept). The reason always goes. */
 export function changesFromPlan(form: Form, plan: Plan) {
   const now = payloadFromForm(form);
   const before = payloadFromForm({ ...formFromPlan(plan), reason: form.reason });
   const changed: Record<string, unknown> = {};
   for (const key of Object.keys(now) as (keyof typeof now)[]) {
     if (key === 'reason') continue;
-    if (!sameValue(key, now[key], before[key])) changed[key] = now[key];
+    if (key === 'translations') {
+      const languages: Record<string, Record<string, string>> = {};
+      for (const code of new Set([...Object.keys(now.translations), ...Object.keys(before.translations)])) {
+        if (JSON.stringify(now.translations[code]) !== JSON.stringify(before.translations[code])) languages[code] = now.translations[code] ?? {};
+      }
+      if (Object.keys(languages).length) changed.translations = languages;
+    } else if (!sameValue(key, now[key], before[key])) changed[key] = now[key];
   }
   return { changed, body: { ...changed, reason: now.reason } };
 }

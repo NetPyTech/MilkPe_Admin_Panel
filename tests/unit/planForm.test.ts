@@ -59,6 +59,14 @@ describe('changesFromPlan', () => {
     expect(changesFromPlan(edited({ badge: '100' }), { ...saved, badge: '100.0' }).changed).toEqual({ badge: '100' });
     expect(changesFromPlan(edited({ name: '0100' }), { ...saved, name: '100' }).changed).toEqual({ name: '0100' });
   });
+  it('sends only the languages that changed, and an empty one for a language that was removed', () => {
+    const withTwo = { ...saved, translations: { hi: { name: 'स्टार्टर' }, pa: { name: 'ਸ਼ੁਰੂ' } } };
+    const form = (change: Record<string, { name: string; description: string; badge: string }>) =>
+      ({ ...formFromPlan(withTwo), reason: 'A reason', translations: { ...formFromPlan(withTwo).translations, ...change } });
+    expect(changesFromPlan(form({ pa: { name: 'ਨਵਾਂ', description: '', badge: '' } }), withTwo).changed).toEqual({ translations: { pa: { name: 'ਨਵਾਂ' } } });
+    expect(changesFromPlan(form({ hi: { name: '', description: '', badge: '' } }), withTwo).changed).toEqual({ translations: { hi: {} } });
+    expect(changesFromPlan(form({}), withTwo).changed).toEqual({});
+  });
   it('holds only what differs, with a real change in an amount counted', () => {
     expect(changesFromPlan(edited({ price: '449.5' }), saved).changed).toEqual({ price: '449.5' });
     expect(changesFromPlan(edited({ description: 'New text' }), saved).body).toEqual({ description: 'New text', reason: 'A reason' });

@@ -94,6 +94,10 @@ export function UserDetailView({ data }: { data: UserDetail }) {
                 <Fields items={[['Running', `${plans.current.name} (${plans.current.source === 'grant' ? 'gift' : formatInr(plans.current.price)})`],
                   ['Ends', `${formatDate(plans.current.ends_at)} (${plans.current.days_left} days left)`], ['Limits', limitsText(plans.current)],
                   ['Used this period', plans.current.usage ? usageText(plans.current.usage) : null]]} />
+              ) : (buyer.trial_days_remaining ?? 0) > 0 ? (
+                <p className="text-sm text-muted-foreground">
+                  In the free trial ({buyer.trial_days_remaining} days left): no collection fee is taken yet. A plan given now starts when the trial ends.
+                </p>
               ) : <p className="text-sm text-muted-foreground">No plan is running: the wallet pays the collection fee.</p>}
               {plans.upcoming.map((item) => (
                 <p key={item.id} className="text-sm text-muted-foreground">Next: {item.name}, {formatDate(item.starts_at)} – {formatDate(item.ends_at)}.</p>
