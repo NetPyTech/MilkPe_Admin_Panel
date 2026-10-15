@@ -16,4 +16,13 @@ describe('UserFilters', () => {
     render(<UserFilters values={{ trial: 'ended' }} onChange={vi.fn()} onClear={vi.fn()} />);
     expect(screen.getByLabelText('Free trial')).toHaveValue('ended');
   });
+  it('filters dairies by their subscription plan', async () => {
+    const onChange = vi.fn();
+    render(<UserFilters values={{ plan: 'ending' }} onChange={onChange} onClear={vi.fn()} />);
+    expect(screen.getByLabelText('Subscription plan')).toHaveValue('ending');
+    await userEvent.selectOptions(screen.getByLabelText('Subscription plan'), 'none');
+    expect(onChange).toHaveBeenCalledWith({ plan: 'none' });
+    await userEvent.selectOptions(screen.getByLabelText('Subscription plan'), '');
+    expect(onChange).toHaveBeenLastCalledWith({ plan: undefined });
+  });
 });

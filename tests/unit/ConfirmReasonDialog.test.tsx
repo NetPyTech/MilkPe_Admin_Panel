@@ -10,6 +10,18 @@ const setup = (onConfirm = vi.fn().mockResolvedValue(undefined)) => {
   return { onConfirm, onClose };
 };
 
+describe('ConfirmReasonDialog reopened', () => {
+  it('starts empty again, even for the same action, so an old reason is never one click from the audit log', async () => {
+    const props = { title: 'Delete plan', effect: 'It is removed.', confirmLabel: 'Delete plan', onConfirm: vi.fn(), onClose: vi.fn() };
+    const { rerender } = render(<ConfirmReasonDialog open {...props} />);
+    await userEvent.type(screen.getByLabelText(/reason/i), 'meant for something else');
+    rerender(<ConfirmReasonDialog open={false} {...props} />);
+    rerender(<ConfirmReasonDialog open {...props} />);
+    expect(screen.getByLabelText(/reason/i)).toHaveValue('');
+    expect(screen.getByRole('button', { name: 'Delete plan' })).toBeDisabled();
+  });
+});
+
 describe('ConfirmReasonDialog', () => {
   it('states the effect and will not confirm without a reason', async () => {
     const { onConfirm } = setup();

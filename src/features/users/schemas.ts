@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { userSubscriptionSchema } from '@/features/plans/schemas';
 
 const nullableText = z.string().nullable();
 
@@ -19,6 +20,7 @@ export const userDetailSchema = z.object({
   seller: z.object({ business_name: z.string(), state: nullableText, is_verified: z.boolean(), created_at: z.string(), collections_count: z.number() }).nullable(),
   wallet: z.object({ balance: nullableText, transactions: z.array(z.object({ id: z.string(), transaction_type: z.string(), status: z.string(),
     category: z.string(), amount: z.string(), description: z.string(), created_at: z.string() })) }),
+  subscription: userSubscriptionSchema.optional(),   // absent from a backend that predates plans: only the plan section is then hidden
   referral: z.object({ code: nullableText, referred_by: z.object({ id: z.string(), phone_number: z.string() }).nullable(), referred_count: z.number() }),
   devices: z.array(z.object({ platform: z.string(), is_active: z.boolean(), last_seen: z.string() })),
   notification_settings: z.array(z.object({ category: z.string(), in_app: z.boolean(), push: z.boolean() })),

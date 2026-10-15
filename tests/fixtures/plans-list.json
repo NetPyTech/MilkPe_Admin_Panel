@@ -1,0 +1,84 @@
+{
+  "results": [
+    {
+      "id": "6673aa0b-4f91-4e5e-a0b0-1e86b0a976c6",
+      "name": "Starter c904",
+      "description": "For small dairies",
+      "badge": "Best value",
+      "translations": {
+        "hi": {
+          "name": "स्टार्टर",
+          "description": "छोटी डेयरी के लिए"
+        }
+      },
+      "price": "399.00",
+      "duration_days": 30,
+      "sort_order": 1,
+      "is_active": true,
+      "cap_period": "month",
+      "weight_cap_kg": "2000.00",
+      "collections_cap": 900,
+      "suppliers_cap": 50,
+      "reports_cap": 20,
+      "unlimited": false,
+      "created_at": "2026-10-15T00:19:39.582554Z",
+      "updated_at": "2026-10-15T00:19:39.582586Z",
+      "subscribers": {
+        "running": 2,
+        "waiting": 0,
+        "sold": 2,
+        "on_record": 2
+      }
+    },
+    {
+      "id": "7b146379-f3c3-4ec6-bdda-993f46beec6c",
+      "name": "Pro c904",
+      "description": "",
+      "badge": "",
+      "translations": {},
+      "price": "999.00",
+      "duration_days": 30,
+      "sort_order": 2,
+      "is_active": true,
+      "cap_period": "month",
+      "weight_cap_kg": null,
+      "collections_cap": null,
+      "suppliers_cap": null,
+      "reports_cap": null,
+      "unlimited": true,
+      "created_at": "2026-10-15T00:19:39.606415Z",
+      "updated_at": "2026-10-15T00:19:39.606442Z",
+      "subscribers": {
+        "running": 0,
+        "waiting": 0,
+        "sold": 0,
+        "on_record": 0
+      }
+    },
+    {
+      "id": "3231f9a2-54a3-43b7-9593-3809dc1fe00f",
+      "name": "Fixed 55c3a6",
+      "description": "",
+      "badge": "",
+      "translations": {},
+      "price": "1.00",
+      "duration_days": 30,
+      "sort_order": 0,
+      "is_active": false,
+      "cap_period": "month",
+      "weight_cap_kg": "1.00",
+      "collections_cap": null,
+      "suppliers_cap": null,
+      "reports_cap": null,
+      "unlimited": false,
+      "created_at": "2026-10-15T00:58:56.752162Z",
+      "updated_at": "2026-10-15T00:59:00.036180Z",
+      "subscribers": {
+        "running": 1,
+        "waiting": 0,
+        "sold": 1,
+        "on_record": 1
+      }
+    }
+  ]
+}

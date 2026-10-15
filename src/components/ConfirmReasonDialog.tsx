@@ -20,6 +20,13 @@ export function ConfirmReasonDialog({ open, title, effect, confirmLabel, destruc
   const [reason, setReason] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  // A closed dialog forgets what was typed and any error: reopening it (even for the same action) never starts with an old reason, which
+  // would otherwise be one click from the audit log.
+  const [wasOpen, setWasOpen] = useState(open);
+  if (wasOpen !== open) {   // adjusting state while rendering, as React advises for state that follows a prop
+    setWasOpen(open);
+    if (!open) { setReason(''); setError(''); }
+  }
   const trimmed = reason.trim();
   const valid = trimmed.length >= 3 && trimmed.length <= 500;
 

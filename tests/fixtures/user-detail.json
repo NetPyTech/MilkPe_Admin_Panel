@@ -1,1 +1,141 @@
-{"profile":null,"buyer":{"dairy_name":"Test Dairy","state":null,"district":null,"rate_type":null,"payment_cycle":"ten_days","created_at":"2026-10-14T21:02:28.931089Z","supplier_count":0,"collections_count":0,"last_collection_date":null,"trial_extra_days":13,"trial_granted_days":13,"trial_ends_at":"2026-11-26T21:02:28.931089Z","trial_days_remaining":43},"seller":null,"wallet":{"balance":"0.00","transactions":[]},"referral":{"code":"0DYCZ","referred_by":null,"referred_count":0},"devices":[],"notification_settings":[],"activity":[{"day":"2026-10-15","first_seen_at":"2026-10-14T21:02:28.943362Z","last_seen_at":"2026-10-14T21:02:28.943362Z","app_version":"","platform":""}],"audit":[{"action":"trial.extend","reason":"Fixture capture","created_at":"2026-10-14T22:18:24.942641Z"},{"action":"trial.extend","reason":"api test","created_at":"2026-10-14T21:02:29.050614Z"}],"user":{"id":"2d298f68-59a9-43ff-9f04-f93459c1d706","phone_number":"+919405668387","universal_id":"866904","name":null,"email":null,"language":"en","roles":["buyer"],"state":null,"district":null,"is_active":true,"has_logged_in":true,"date_joined":"2026-10-14T21:02:28.891969Z","wallet_balance":"0.00","last_active":"2026-10-14T21:02:28.943362Z"}}
+{
+  "profile": null,
+  "buyer": {
+    "dairy_name": "Plan Dairy",
+    "state": null,
+    "district": null,
+    "rate_type": null,
+    "payment_cycle": "ten_days",
+    "created_at": "2026-09-14T10:22:12.946533Z",
+    "supplier_count": 1,
+    "collections_count": 1,
+    "last_collection_date": "2026-01-01",
+    "trial_extra_days": 0,
+    "trial_granted_days": 0,
+    "trial_ends_at": "2026-10-14T10:22:12.946533Z",
+    "trial_days_remaining": 0
+  },
+  "seller": null,
+  "wallet": {
+    "balance": "10.00",
+    "transactions": []
+  },
+  "referral": {
+    "code": "D299F",
+    "referred_by": null,
+    "referred_count": 0
+  },
+  "subscription": {
+    "current": {
+      "id": "d567a126-0573-4ea0-b355-d69f18c70f14",
+      "order_id": null,
+      "name": "Starter 77f3",
+      "state": "active",
+      "status": "paid",
+      "source": "grant",
+      "price": "0.00",
+      "duration_days": 10,
+      "starts_at": "2026-10-15T10:22:14.675680Z",
+      "ends_at": "2026-11-01T10:22:14.675680Z",
+      "created_at": "2026-10-15T10:22:14.673858Z",
+      "starts_on": "2026-10-15",
+      "ends_on": "2026-11-01",
+      "created_on": "2026-10-15",
+      "days_left": 17,
+      "cap_period": "month",
+      "weight_cap_kg": "2000.00",
+      "collections_cap": 900,
+      "suppliers_cap": 50,
+      "reports_cap": 20,
+      "unlimited": false,
+      "usage": {
+        "window_starts_at": "2026-10-15T10:22:14.675680Z",
+        "window_ends_at": "2026-11-01T10:22:14.675680Z",
+        "resets_at": null,
+        "resets_on": null,
+        "weight_kg": "100.00",
+        "collections": 1,
+        "reports": 0,
+        "suppliers": 1,
+        "volume_used_up": false,
+        "meters": [
+          {
+            "key": "weight",
+            "used": "100.00",
+            "cap": "2000.00",
+            "percent": 5,
+            "over": false,
+            "unit": "kg"
+          },
+          {
+            "key": "collections",
+            "used": "1",
+            "cap": "900",
+            "percent": 0,
+            "over": false,
+            "unit": null
+          },
+          {
+            "key": "suppliers",
+            "used": "1",
+            "cap": "50",
+            "percent": 2,
+            "over": false,
+            "unit": null
+          },
+          {
+            "key": "reports",
+            "used": "0",
+            "cap": "20",
+            "percent": 0,
+            "over": false,
+            "unit": null
+          }
+        ]
+      }
+    },
+    "upcoming": [],
+    "held": 1
+  },
+  "devices": [],
+  "notification_settings": [],
+  "activity": [
+    {
+      "day": "2026-10-15",
+      "first_seen_at": "2026-10-15T10:22:11.742667Z",
+      "last_seen_at": "2026-10-15T10:22:11.742667Z",
+      "app_version": "",
+      "platform": ""
+    }
+  ],
+  "audit": [
+    {
+      "action": "subscription.extend",
+      "reason": "Make up for downtime",
+      "created_at": "2026-10-15T10:22:15.122907Z"
+    },
+    {
+      "action": "subscription.grant",
+      "reason": "Goodwill after an outage",
+      "created_at": "2026-10-15T10:22:14.697298Z"
+    }
+  ],
+  "user": {
+    "id": "77867152-7b4f-467b-8bcd-e8deb215ea33",
+    "phone_number": "+919784587596",
+    "universal_id": "511826",
+    "name": null,
+    "email": null,
+    "language": "en",
+    "roles": [
+      "buyer"
+    ],
+    "state": null,
+    "district": null,
+    "is_active": true,
+    "has_logged_in": true,
+    "date_joined": "2026-09-14T10:22:12.946533Z",
+    "wallet_balance": "10.00",
+    "last_active": "2026-10-15T10:22:11.742667Z"
+  }
+}

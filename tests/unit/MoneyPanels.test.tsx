@@ -10,8 +10,8 @@ describe('RevenueTable', () => {
   it('lists each period and a totals row with money formatted for India', () => {
     const data: Revenue = {
       from: '2026-10-01', to: '2026-10-02', group: 'day',
-      buckets: [{ period: '2026-10-01', recharge_count: 2, recharge_amount: '123456.78', bonus_amount: '0.00', fee_amount: '12.50', referral_payout: '0.00', adjustment_credit: '0.00', adjustment_debit: '0.00' }],
-      totals: { recharge_count: 2, recharge_amount: '123456.78', bonus_amount: '0.00', fee_amount: '12.50', referral_payout: '0.00', adjustment_credit: '0.00', adjustment_debit: '0.00' },
+      buckets: [{ period: '2026-10-01', recharge_count: 2, recharge_amount: '123456.78', bonus_amount: '0.00', fee_amount: '12.50', referral_payout: '0.00', adjustment_credit: '0.00', adjustment_debit: '0.00', subscription_amount: '0.00', subscription_count: 0 }],
+      totals: { recharge_count: 2, recharge_amount: '123456.78', bonus_amount: '0.00', fee_amount: '12.50', referral_payout: '0.00', adjustment_credit: '0.00', adjustment_debit: '0.00', subscription_amount: '0.00', subscription_count: 0 },
     };
     render(<RevenueTable data={data} />);
     expect(screen.getAllByText('₹1,23,456.78')).toHaveLength(2);

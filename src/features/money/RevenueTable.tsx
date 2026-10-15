@@ -14,6 +14,7 @@ const cells = (row: Cells) => (
   <>
     <TableCell className="text-right tabular-nums">{row.recharge_count}</TableCell>
     {money(row.recharge_amount)}{money(row.bonus_amount)}{money(row.fee_amount)}{money(row.referral_payout)}{money(row.adjustment_credit)}{money(row.adjustment_debit)}
+    <TableCell className="text-right tabular-nums">{row.subscription_count}</TableCell>{money(row.subscription_amount)}
   </>
 );
 
@@ -25,7 +26,7 @@ export function RevenueTable({ data }: { data: Revenue }) {
         <TableRow>
           <TableHead>Period</TableHead><TableHead className="text-right">Recharges</TableHead><TableHead className="text-right">Recharged</TableHead>
           <TableHead className="text-right">Bonuses</TableHead><TableHead className="text-right">Fees</TableHead><TableHead className="text-right">Referral payouts</TableHead>
-          <TableHead className="text-right">Adjusted in</TableHead><TableHead className="text-right">Adjusted out</TableHead>
+          <TableHead className="text-right">Adjusted in</TableHead><TableHead className="text-right">Adjusted out</TableHead><TableHead className="text-right">Plans bought</TableHead><TableHead className="text-right">Plan sales</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
